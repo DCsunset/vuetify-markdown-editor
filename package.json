@@ -4,14 +4,22 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+	"build-lib": "vue-cli-service build --target wc --name vuetify-markdown ./src/build-lib.js"
   },
   "dependencies": {
-    "vue": "^2.6.6"
+    "highlight.js": "^9.15.6",
+    "marked": "^0.6.1",
+    "vue": "^2.6.6",
+    "vuetify": "^1.5.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-service": "^3.5.0",
+    "css-loader": "^2.1.1",
+    "style-loader": "^0.23.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.5.21"
   }
 }
