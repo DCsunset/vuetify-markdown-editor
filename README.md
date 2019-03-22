@@ -26,7 +26,7 @@ export default {
 };
 ```
 
-# LICENSE
+## LICENSE
 
 MIT License
 
