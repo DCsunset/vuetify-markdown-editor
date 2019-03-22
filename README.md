@@ -26,6 +26,12 @@ export default {
 };
 ```
 
+## Dependencies
+
+* [marked](https://github.com/markedjs/marked)
+* [highlight.js](https://github.com/highlightjs/highlight.js)
+* [vuetify](https://github.com/vuetifyjs/vuetify)
+
 ## LICENSE
 
 MIT License
