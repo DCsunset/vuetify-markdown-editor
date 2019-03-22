@@ -21,12 +21,12 @@
 	  "type": "git",
 	  "url": "git+https://github.com/DCsunset/vuetify-markdown-editor"
   },
-  "keywords": {
+  "keywords": [
 	  "vue",
 	  "vuetify",
 	  "markdown",
 	  "markdown-editor"
-  },
+  ],
   "dependencies": {
     "highlight.js": "^9.15.6",
     "marked": "^0.6.1",
