@@ -1,11 +1,18 @@
 {
   "name": "vuetify-markdown-editor",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.2-rc2",
+  "main": "./dist/vuetify-markdown-editor.common.js",
+  "files": [
+    "dist/*",
+    "src/components/*.vue",
+    "src/util/*.js",
+    "src/build-entry.js",
+    "*.json"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-	"build-lib": "vue-cli-service build --target wc --name vuetify-markdown ./src/build-lib.js"
+    "build-lib": "vue-cli-service build --target lib --name vuetify-markdown-editor --formats commonjs ./src/build-entry.js"
   },
   "dependencies": {
     "highlight.js": "^9.15.6",
