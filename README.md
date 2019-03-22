@@ -26,6 +26,10 @@ export default {
 };
 ```
 
+## Screenshot
+
+![Screenshot](Screenshot.png)
+
 ## Dependencies
 
 * [marked](https://github.com/markedjs/marked)
