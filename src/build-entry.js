@@ -2,6 +2,6 @@ import MarkdownEditor from './components/MarkdownEditor.vue';
 import marked from './util/marked.js';
 
 export default {
-	MarkdownEditor,
-	marked
+	Editor: MarkdownEditor,
+	Renderer: marked
 };
