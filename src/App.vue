@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MarkdownEditor from './components/MarkdownEditor.vue'
+import MarkdownEditor from 'vuetify-markdown-editor'
 
 export default {
   name: 'app',
