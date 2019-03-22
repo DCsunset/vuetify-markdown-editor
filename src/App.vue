@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <MarkdownEditor v-model="text" />
+    <Editor v-model="text" />
   </div>
 </template>
 
 <script>
-import MarkdownEditor from 'vuetify-markdown-editor'
+import { Editor } from './build-entry.js';
 
 export default {
   name: 'app',
   components: {
-    MarkdownEditor
+    Editor
   },
   data() {
     return {
