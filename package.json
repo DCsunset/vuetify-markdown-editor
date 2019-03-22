@@ -1,6 +1,6 @@
 {
   "name": "vuetify-markdown-editor",
-  "version": "0.1.3-rc3",
+  "version": "0.1.3",
   "main": "./dist/vuetify-markdown-editor.common.js",
   "files": [
     "dist/*",
