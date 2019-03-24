@@ -10,7 +10,14 @@ npm install vuetify-markdown-editor
 
 This package can only be used in Module:
 
+```html
+<template>
+  <Editor v-model="text" />
+</template>
+```
+
 ```js
+<script>
 import { Editor, Renderer } from 'vuetify-markdown-editor';
 
 // CSS for Editor
@@ -22,8 +29,14 @@ import 'vuetify-markdown-editor/dist/vuetify-markdown-editor.css';
 export default {
   components: {
     Editor
+  },
+  data() {
+    return {
+      text: ''
+    };
   }
 };
+</script>
 ```
 
 ## Screenshot
