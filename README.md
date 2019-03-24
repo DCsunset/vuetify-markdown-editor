@@ -36,7 +36,7 @@ export default {
 * [highlight.js](https://github.com/highlightjs/highlight.js)
 * [vuetify](https://github.com/vuetifyjs/vuetify)
 
-## LICENSE
+## License
 
 MIT License
 
