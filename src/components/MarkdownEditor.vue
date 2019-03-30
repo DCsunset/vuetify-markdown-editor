@@ -26,60 +26,12 @@
 	</v-container>
 </template>
 
-<style>
-code
-{
-	font-weight: initial;
-	background: #1d1f21;
-	color: white;
-	font-size: 95%;
-	display: inline-block;
-	padding: 1px 5px 1px 5px;
-	margin: 2px;
-	margin-bottom: 12px;
-}
-code:before,
-code:after
-{
-	content: initial;
-}
-
-/* Change h1, h2... styles to make markdown format better */
-h1
-{
-	font-size: 1.8em;
-	margin: 0.3em 0;
-	//border-bottom: 1px solid #eaecef;
-}
-
-h2
-{
-	margin: 0.25em 0;
-}
-
-h3
-{
-	margin: 0.12em 0;
-}
-
-p
-{
-	margin-bottom: 12px;
-}
-</style>
-
-<style scoped>
-.markdown-text
-{
-  word-wrap: break-word;
-}
-</style>
-
 <script>
 import marked from '../util/marked.js';
 import { VContainer, VLayout, VFlex, VCard, VCardText, VToolbar, VTextarea } from 'vuetify/lib';
 // Styles
 import 'vuetify/src/stylus/app.styl';
+import '../style.css';
 
 export default {
   components: {
