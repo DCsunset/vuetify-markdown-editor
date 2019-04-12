@@ -18,7 +18,7 @@
         v-show="emojiPicker"
         v-click-outside="() => this.emojiPicker = false"
         title="Pick an emoji..."
-        emoji=""
+        emoji="smiley"
         :native="nativeEmoji"
         :pickerStyles="{ position: 'absolute', 'z-index': 1 }"
         @select="select"
