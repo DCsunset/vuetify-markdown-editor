@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar :height="height">
+    <v-toolbar :height="toolbarHeight">
       <v-hover>
         <!-- Must use click.stop to prevent v-click-outside event -->
         <v-icon
@@ -18,6 +18,8 @@
         v-show="emojiPicker"
         v-click-outside="() => this.emojiPicker = false"
         title="Pick an emoji..."
+        emoji=""
+        :native="nativeEmoji"
         :pickerStyles="{ position: 'absolute', 'z-index': 1 }"
         @select="select"
         />
@@ -35,9 +37,13 @@ import vClickOutside from 'v-click-outside';
 
 export default {
   props: {
-    height: {
+    toolbarHeight: {
       type: String,
       default: '42px'
+    },
+    nativeEmoji: {
+      type: Boolean,
+      default: false
     }
   },
   components: {

@@ -6,6 +6,12 @@
 npm install vuetify-markdown-editor
 ```
 
+## Functions
+
+* Code highlighting
+* Emoji picking
+* (TODO) Image uploading
+
 ## Usage
 
 This package can only be used in Module:
@@ -45,11 +51,15 @@ export default {
 
 ![Screenshot](Screenshot.png)
 
+![Screenshot-Emoji](Screenshot-Emoji.png)
+
 ## Dependencies
 
 * [marked](https://github.com/markedjs/marked)
 * [highlight.js](https://github.com/highlightjs/highlight.js)
-* [vuetify](https://github.com/vuetifyjs/vuetify)
+* [Vuetify](https://github.com/vuetifyjs/vuetify)
+* [Emoji Mart (Vue)](https://github.com/jm-david/emoji-mart-vue)
+* [v-click-outside](https://github.com/ndelvalle/v-click-outside)
 
 ## License
 
