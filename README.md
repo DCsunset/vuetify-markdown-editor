@@ -18,13 +18,15 @@ This package can only be used in Module:
 
 ```js
 <script>
-import { Editor, Renderer } from 'vuetify-markdown-editor';
+import { Editor, Renderer, Toolbar } from 'vuetify-markdown-editor';
 
 // CSS for Editor
 import 'vuetify-markdown-editor/dist/vuetify-markdown-editor.css';
 
-// Editor is a Vue component
-// Renderer is the internal rendering function
+/* Editor is a Vue component
+ * Renderer is the internal rendering function
+ * Toolbar is a Vue component used for some WYSIWYG functions
+ */
 
 export default {
   components: {
