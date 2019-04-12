@@ -3,12 +3,15 @@
 		<v-layout row fill-height wrap>
 			<v-flex xs12 md6 fill-height class="pa-3">
 				<v-layout column fill-height>
-					<v-toolbar height="42px">
-					</v-toolbar>
+          <toolbar
+            height="42px"
+            @emoji="insertEmoji"
+            />
 					<v-textarea
 						solo
 						hide-details
 						auto-grow
+            ref="textarea"
 						height="100%"
 						:value="value"
 						@input="val => $emit('input', val)" />
@@ -28,10 +31,11 @@
 
 <script>
 import marked from '../util/marked.js';
-import { VContainer, VLayout, VFlex, VCard, VCardText, VToolbar, VTextarea } from 'vuetify/lib';
+import { VContainer, VLayout, VFlex, VCard, VCardText, VTextarea } from 'vuetify/lib';
 // Styles
 import 'vuetify/src/stylus/app.styl';
 import '../style.css';
+import Toolbar from './Toolbar.vue';
 
 export default {
   components: {
@@ -40,7 +44,7 @@ export default {
     VFlex,
     VCard,
     VCardText,
-    VToolbar,
+    Toolbar,
     VTextarea
   },
 	props: {
@@ -58,6 +62,32 @@ export default {
 		{
 			return marked(this.value);
 		}
-	}
+  },
+
+  methods: {
+    insertEmoji(emoji)
+    {
+      // Get the element of textarea
+      const textarea = this.$refs.textarea.$refs['input'];
+      //console.log(textarea);
+
+      const startPos = textarea.selectionStart;
+      const endPos = textarea.selectionEnd;
+
+      //console.log(textarea.selectionStart, textarea.selectionEnd);
+
+      // Insert to the selection area
+      this.$emit('input', textarea.value.substring(0, startPos) + emoji.native + textarea.value.substring(endPos));
+
+      // Focus
+      textarea.focus();
+
+      // Update cursor after the data updated
+      this.$nextTick(() => {
+        textarea.selectionEnd = startPos + emoji.native.length;
+        //console.log(textarea.selectionStart, textarea.selectionEnd);
+      });
+    }
+  }
 };
 </script>
