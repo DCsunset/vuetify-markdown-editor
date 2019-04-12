@@ -9,7 +9,7 @@
     "src/util/*.js",
     "src/build-entry.js",
     "*.json",
-	"Screenshot.png"
+    "Screenshot.png"
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -19,16 +19,17 @@
   "author": "DCsunset",
   "license": "MIT",
   "repository": {
-	  "type": "git",
-	  "url": "git+https://github.com/DCsunset/vuetify-markdown-editor"
+    "type": "git",
+    "url": "git+https://github.com/DCsunset/vuetify-markdown-editor"
   },
   "keywords": [
-	  "vue",
-	  "vuetify",
-	  "markdown",
-	  "markdown-editor"
+    "vue",
+    "vuetify",
+    "markdown",
+    "markdown-editor"
   ],
   "dependencies": {
+    "emoji-mart-vue": "^2.6.6",
     "highlight.js": "^9.15.6",
     "marked": "^0.6.1",
     "vue": "^2.6.6",
