@@ -2,10 +2,11 @@
   <div>
     <v-toolbar :height="height">
       <v-hover>
+        <!-- Must use click.stop to prevent v-click-outside event -->
         <v-icon
           slot-scope="{ hover }"
           :color="hover || emojiPicker ? 'blue' : ''"
-          @click="emojiPicker = !emojiPicker"
+          @click.stop="emojiPicker = !emojiPicker"
           >
           insert_emoticon
         </v-icon>
@@ -15,6 +16,7 @@
     <no-ssr>
       <picker
         v-show="emojiPicker"
+        v-click-outside="() => this.emojiPicker = false"
         title="Pick an emoji..."
         :pickerStyles="{ position: 'absolute', 'z-index': 1 }"
         @select="select"
@@ -28,6 +30,8 @@ import { Picker } from 'emoji-mart-vue';
 import { VToolbar, VBtn, VIcon, VHover } from 'vuetify/lib';
 // The picker is not ssr
 import NoSSR from 'vue-no-ssr';
+// v-click-outside
+import vClickOutside from 'v-click-outside';
 
 export default {
   props: {
@@ -43,6 +47,9 @@ export default {
     VIcon,
     VBtn,
     Picker
+  },
+  directives: {
+    clickOutside: vClickOutside.directive
   },
   data()
   {
