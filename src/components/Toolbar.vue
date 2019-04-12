@@ -12,18 +12,22 @@
       </v-hover>
     </v-toolbar>
 
-    <picker
-      v-show="emojiPicker"
-      title="Pick an emoji..."
-      :pickerStyles="{ position: 'absolute', 'z-index': 1 }"
-      @select="select"
-      />
+    <no-ssr>
+      <picker
+        v-show="emojiPicker"
+        title="Pick an emoji..."
+        :pickerStyles="{ position: 'absolute', 'z-index': 1 }"
+        @select="select"
+        />
+    </no-ssr>
   </div>
 </template>
 
 <script>
 import { Picker } from 'emoji-mart-vue';
 import { VToolbar, VBtn, VIcon, VHover } from 'vuetify/lib';
+// The picker is not ssr
+import NoSSR from 'vue-no-ssr';
 
 export default {
   props: {
@@ -33,6 +37,7 @@ export default {
     }
   },
   components: {
+    'no-ssr': NoSSR,
     VHover,
     VToolbar,
     VIcon,

@@ -1,6 +1,6 @@
 {
   "name": "vuetify-markdown-editor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Vue.js Component for editing and previewing markdown.",
   "main": "./dist/vuetify-markdown-editor.common.js",
   "files": [
@@ -14,7 +14,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-lib": "vue-cli-service build --target lib --name vuetify-markdown-editor --formats commonjs ./src/build-entry.js"
+    "build:lib": "vue-cli-service build --target lib --name vuetify-markdown-editor --formats commonjs ./src/build-entry.js"
   },
   "author": "DCsunset",
   "license": "MIT",
@@ -31,13 +31,14 @@
   "dependencies": {
     "emoji-mart-vue": "^2.6.6",
     "highlight.js": "^9.15.6",
-    "marked": "^0.6.1",
+    "marked": "^0.6.2",
     "vue": "^2.6.6",
-    "vuetify": "^1.5.7"
+    "vue-no-ssr": "^1.1.1",
+    "vuetify": "^1.5.11"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.5.0",
-    "@vue/cli-service": "^3.5.0",
+    "@vue/cli-plugin-babel": "^3.5.5",
+    "@vue/cli-service": "^3.5.3",
     "css-loader": "^2.1.1",
     "style-loader": "^0.23.1",
     "stylus": "^0.54.5",
