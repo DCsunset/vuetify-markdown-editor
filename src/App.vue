@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Editor outline :preview="false" v-model="text" />
+    <Editor :outline="true" :preview="true" v-model="text" />
   </div>
 </template>
 

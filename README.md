@@ -6,19 +6,32 @@
 npm install vuetify-markdown-editor
 ```
 
-## Functions
+## Features
 
+* Solo and inline mode
+* Editor-only and Editor-Preview mode
 * Code highlighting
 * Emoji picking
 * (TODO) Image uploading
 
 ## Usage
 
-This package can only be used in Module:
+Since this component is based on Vuetify,
+the configuration of Vuetify is required:
+
+```js
+import Vuetify from 'vuetify';
+import 'vuetify/src/stylus/app.styl';
+import './style.css';
+
+Vue.use(Vuetify);
+```
+
+This package can be used in Node.js module:
 
 ```html
 <template>
-  <Editor v-model="text" />
+  <Editor :outline="false" :preview="true" v-model="text" />
 </template>
 ```
 
@@ -31,7 +44,7 @@ import 'vuetify-markdown-editor/dist/vuetify-markdown-editor.css';
 
 /* Editor is a Vue component
  * Renderer is the internal rendering function
- * Toolbar is a Vue component used for some WYSIWYG functions
+ * Toolbar is the internal toolbar component for some WYSIWYG functions
  */
 
 export default {
@@ -43,15 +56,20 @@ export default {
       text: ''
     };
   }
-};
-</script>
+}; </script>
 ```
 
 ## Screenshot
 
+Solo mode: `<Editor v-model="text" />`
 ![Screenshot](Screenshot.png)
 
+Outline mode: `<Editor outline v-model="text" />`
+![Screenshot-Outline](Screenshot-Outline.png)
+
+Emoji:
 ![Screenshot-Emoji](Screenshot-Emoji.png)
+
 
 ## Dependencies
 
