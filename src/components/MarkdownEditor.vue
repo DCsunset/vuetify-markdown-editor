@@ -1,33 +1,45 @@
 <template>
 	<v-container fluid>
-		<v-layout row fill-height wrap>
-			<v-flex xs12 md6 fill-height class="pa-3">
-				<v-layout column fill-height>
-          <toolbar
-            height="42px"
-            @emoji="insertEmoji"
-            />
-					<v-textarea
-						solo
-						hide-details
-						auto-grow
-            ref="textarea"
-						height="100%"
-						:value="value"
-						@input="val => $emit('input', val)" />
-				</v-layout>
-			</v-flex>
-			<v-flex xs12 md6 fill-height class="pa-3">
-				<v-card>
-					<v-card-text v-if="compiled && mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
-					<v-card-text v-else-if="compiled && mode === 'Source'" class="subheading">
+    <v-layout row fill-height wrap>
+      <v-flex xs12 md6 fill-height class="pa-3">
+        <v-layout column fill-height>
+          <v-card>
+            <toolbar
+              height="42px"
+              @emoji="insertEmoji"
+              />
+            <v-textarea
+              solo
+              flat
+              hide-details
+              auto-grow
+              ref="textarea"
+              :value="value"
+              @input="val => $emit('input', val)"
+              />
+          </v-card>
+        </v-layout>
+      </v-flex>
+      <v-flex xs12 md6 fill-height class="pa-3">
+        <v-card>
+          <v-card-text v-if="compiled && mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
+          <v-card-text v-else-if="compiled && mode === 'Source'" class="subheading">
             {{ compiled }}
-					</v-card-text>
-				</v-card>
-			</v-flex>
-		</v-layout>
-	</v-container>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
+
+<style scoped>
+/* Remove boder-radius */
+.v-textarea >>> .v-input__control > .v-input__slot
+{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
 
 <script>
 import marked from '../util/marked.js';
@@ -47,21 +59,21 @@ export default {
     Toolbar,
     VTextarea
   },
-	props: {
-		value: {
-			type: String,
-			default: ''
+  props: {
+    value: {
+      type: String,
+      default: ''
     },
     mode: {
       type: String,
       default: 'Rendered'
     }
-	},
-	computed: {
-		compiled()
-		{
-			return marked(this.value);
-		}
+  },
+  computed: {
+    compiled()
+    {
+      return marked(this.value);
+    }
   },
 
   methods: {
