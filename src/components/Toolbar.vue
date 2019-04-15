@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar :height="toolbarHeight">
+    <v-toolbar flat :height="toolbarHeight">
       <v-hover>
         <!-- Must use click.stop to prevent v-click-outside event -->
         <v-icon
