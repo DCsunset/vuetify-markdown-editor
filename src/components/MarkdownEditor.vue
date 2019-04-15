@@ -76,6 +76,8 @@ import { VContainer, VToolbar, VLayout, VFlex, VCard, VCardText, VTextarea } fro
 // Styles
 import Toolbar from './Toolbar.vue';
 
+import '../style.css';
+
 export default {
   components: {
     VToolbar,
