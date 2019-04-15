@@ -4,7 +4,7 @@
       <!-- Must use click.stop to prevent v-click-outside event -->
       <v-icon
         slot-scope="{ hover }"
-        :color="hover || emojiPicker ? 'blue' : ''"
+        :color="hover || emojiPicker ? 'blue' : color"
         @click.stop="emojiPicker = !emojiPicker"
         >
         insert_emoticon
@@ -34,6 +34,11 @@ import vClickOutside from 'v-click-outside';
 
 export default {
   props: {
+    // Icon color
+    color: {
+      type: String,
+      default: undefined
+    },
     nativeEmoji: {
       type: Boolean,
       default: false
