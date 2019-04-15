@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Editor v-model="text" />
+    <Editor outline :preview="false" v-model="text" />
   </div>
 </template>
 
@@ -17,6 +17,6 @@ export default {
       text: ''
     };
   }
-}
+};
 </script>
 
