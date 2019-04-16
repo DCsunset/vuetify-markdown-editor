@@ -1,27 +1,12 @@
 <template>
-  <v-layout row wrap>
-    <v-flex xs12 :md6="preview" class="pa-3">
-      <v-layout column>
-        <v-card v-if="!outline">
-          <v-toolbar flat>
-            <toolbar :color="iconColor" @emoji="insertEmoji" />
-          </v-toolbar>
-          <v-textarea
-            solo
-            flat
-            hide-details
-            auto-grow
-            ref="textarea"
-            :value="value"
-            @input="val => $emit('input', val)"
-            />
-        </v-card>
-
-        <template v-else>
-          <div class="pa-2 outline" :style="{ borderColor: outlineColor }">
-            <toolbar :color="iconColor" @emoji="insertEmoji" />
-          </div>
-          <div class="outline" :style="{ borderColor: outlineColor, borderTop: 'none' }">
+  <v-container style="padding: 0" fluid>
+    <v-layout row wrap>
+      <v-flex xs12 :md6="preview" class="pa-3">
+        <v-layout column>
+          <v-card v-if="!outline">
+            <v-toolbar flat>
+              <toolbar :color="color" @emoji="insertEmoji" />
+            </v-toolbar>
             <v-textarea
               solo
               flat
@@ -31,27 +16,44 @@
               :value="value"
               @input="val => $emit('input', val)"
               />
+          </v-card>
+
+          <template v-else>
+            <div class="pa-2 outline" :style="{ borderColor: color }">
+              <toolbar :color="color" @emoji="insertEmoji" />
+            </div>
+            <div class="outline" :style="{ borderColor: color, borderTop: 'none' }">
+              <v-textarea
+                solo
+                flat
+                hide-details
+                auto-grow
+                ref="textarea"
+                :value="value"
+                @input="val => $emit('input', val)"
+                />
+            </div>
+          </template>
+        </v-layout>
+      </v-flex>
+
+      <v-flex v-if="preview" xs12 :md6="preview" class="pa-3">
+        <v-card v-if="!outline">
+          <v-card-text v-if="compiled && mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
+          <v-card-text v-else-if="compiled && mode === 'Source'" class="subheading">
+            {{ compiled }}
+          </v-card-text>
+        </v-card>
+
+        <div v-else :style="{ borderColor: color }" class="pa-3 outline">
+          <div v-if="compiled && mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
+          <div v-else-if="compiled && mode === 'Source'" class="subheading">
+            {{ compiled }}
           </div>
-        </template>
-      </v-layout>
-    </v-flex>
-
-    <v-flex v-if="preview" xs12 :md6="preview" class="pa-3">
-      <v-card v-if="!outline">
-        <v-card-text v-if="compiled && mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
-        <v-card-text v-else-if="compiled && mode === 'Source'" class="subheading">
-          {{ compiled }}
-        </v-card-text>
-      </v-card>
-
-      <div v-else :style="{ borderColor: outlineColor }" class="pa-3 outline">
-        <div v-if="compiled && mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
-        <div v-else-if="compiled && mode === 'Source'" class="subheading">
-          {{ compiled }}
         </div>
-      </div>
-    </v-flex>
-  </v-layout>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <style scoped>
@@ -100,12 +102,8 @@ export default {
       type: Boolean,
       default: false
     },
-    // Outline color
-    outlineColor: {
-      type: String,
-      default: 'rgba(0, 0, 0, 0.54)'
-    },
-    iconColor: {
+    // Outline and icon default color
+    color: {
       type: String,
       default: undefined
     },

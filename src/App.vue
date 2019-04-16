@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    <Editor outlineColor="rgba(0, 0, 0, 0.54)" :outline="true" :preview="true" v-model="text" />
-  </div>
+  <v-app>
+    <Editor :outline="true" :preview="true" v-model="text" />
+  </v-app>
 </template>
 
 <script>
