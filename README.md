@@ -58,6 +58,19 @@ export default {
 }; </script>
 ```
 
+## Test
+
+Clone this repository,
+and then run:
+
+```
+npm install
+npm run serve
+```
+
+Then open <http://localhost:8080> in browser to test.
+
+
 ## Screenshot
 
 Solo mode: `<Editor v-model="text" />`
