@@ -5,6 +5,7 @@
       <v-icon
         slot-scope="{ hover }"
         :color="hover || emojiPicker ? 'blue' : color"
+        title="Emoji"
         @click.stop="emojiPicker = !emojiPicker"
         >
         insert_emoticon
