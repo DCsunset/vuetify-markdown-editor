@@ -21,8 +21,7 @@ the configuration of Vuetify is required:
 
 ```js
 import Vuetify from 'vuetify';
-import 'vuetify/src/stylus/app.styl';
-import './style.css';
+import 'vuetify/dist/vuetify.min.css';
 
 Vue.use(Vuetify);
 ```
