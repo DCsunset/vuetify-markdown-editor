@@ -1,6 +1,7 @@
 <template>
   <v-container style="padding: 0" fluid>
     <v-layout row wrap>
+      <!-- Editor -->
       <v-flex xs12 :md6="preview" class="pa-3">
         <v-layout column>
           <v-card v-if="!outline">
@@ -37,17 +38,18 @@
         </v-layout>
       </v-flex>
 
-      <v-flex v-if="preview" xs12 :md6="preview" class="pa-3">
+      <!-- Preview -->
+      <v-flex v-if="preview" v-show="compiled" xs12 :md6="preview" class="pa-3">
         <v-card v-if="!outline">
-          <v-card-text v-if="compiled && mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
-          <v-card-text v-else-if="compiled && mode === 'Source'" class="subheading">
+          <v-card-text v-if="mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
+          <v-card-text v-else-if="mode === 'Source'" class="subheading">
             {{ compiled }}
           </v-card-text>
         </v-card>
 
         <div v-else :style="{ borderColor: color }" class="pa-3 outline">
-          <div v-if="compiled && mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
-          <div v-else-if="compiled && mode === 'Source'" class="subheading">
+          <div v-if="mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
+          <div v-else-if="mode === 'Source'" class="subheading">
             {{ compiled }}
           </div>
         </div>
