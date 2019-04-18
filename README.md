@@ -30,23 +30,18 @@ This package can be used in Node.js module:
 
 ```html
 <template>
-  <Editor :outline="false" :preview="true" v-model="text" />
+  <v-app>
+    <Editor ref="editor" :outline="true" :preview="true" v-model="text" />
+  </v-app>
 </template>
 ```
 
 ```js
 <script>
-import { Editor, Renderer, Toolbar } from 'vuetify-markdown-editor';
-
-// CSS for Editor
-import 'vuetify-markdown-editor/dist/vuetify-markdown-editor.css';
-
-/* Editor is a Vue component
- * Renderer is the internal rendering function
- * Toolbar is the internal toolbar component for some WYSIWYG functions
- */
+import { Editor } from './build-entry.js';
 
 export default {
+  name: 'app',
   components: {
     Editor
   },
@@ -54,8 +49,12 @@ export default {
     return {
       text: ''
     };
+  },
+  mounted() {
+    this.$refs.editor.focus();
   }
-}; </script>
+};
+</script>
 ```
 
 ## Test
