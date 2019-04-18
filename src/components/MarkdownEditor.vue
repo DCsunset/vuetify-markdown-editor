@@ -122,6 +122,12 @@ export default {
   },
 
   methods: {
+    // Provide a function to focus on the textarea
+    focus()
+    {
+      this.$refs.textarea.focus();
+    },
+
     insertEmoji(emoji)
     {
       // Get the element of textarea

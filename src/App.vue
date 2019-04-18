@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Editor :outline="true" :preview="true" v-model="text" />
+    <Editor ref="editor" :outline="true" :preview="true" v-model="text" />
   </v-app>
 </template>
 
@@ -16,6 +16,9 @@ export default {
     return {
       text: ''
     };
+  },
+  mounted() {
+    this.$refs.editor.focus();
   }
 };
 </script>
