@@ -57,6 +57,18 @@ export default {
 </script>
 ```
 
+## Props
+
+| Prop        | Default      | Description                                                     |
+|-------------|--------------|-----------------------------------------------------------------|
+| value       | `''`         | String that binds to the textarea                               |
+| mode        | `'Rendered'` | When set to 'Source', the preview will display html source code |
+| outline     | `false`      | The border will be outlined instead of card style               |
+| color       | `undefined`  | The outline and icon's color                                    |
+| preview     | `true`       | Add the responsive preview                                      |
+| nativeEmoji | `false`      | Use native emoji instead of pictures                            |
+
+
 ## Test
 
 Clone this repository,
