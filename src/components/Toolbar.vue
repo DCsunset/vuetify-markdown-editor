@@ -12,21 +12,23 @@
       </v-icon>
     </v-hover>
 
-    <Picker
-      v-show="emojiPicker"
-      v-click-outside="() => this.emojiPicker = false"
-      title="Pick an emoji..."
-      emoji="smiley"
-      :native="nativeEmoji"
-      :pickerStyles="{ position: 'absolute', 'z-index': 1 }"
-      @select="select"
-      />
+    <no-ssr>
+      <Picker
+        v-show="emojiPicker" v-click-outside="() => this.emojiPicker = false"
+        title="Pick an emoji..."
+        emoji="smiley"
+        :native="nativeEmoji"
+        :pickerStyles="{ position: 'absolute', 'z-index': 1 }"
+        @select="select"
+        />
+    </no-ssr>
   </div>
 </template>
 
 <script>
 import { Picker } from 'emoji-mart-vue-fast';
 // The picker is not ssr
+import NoSSR from 'vue-no-ssr';
 // v-click-outside
 import vClickOutside from 'v-click-outside';
 
@@ -46,6 +48,7 @@ export default {
     }
   },
   components: {
+    'no-ssr': NoSSR,
     Picker
   },
   directives: {

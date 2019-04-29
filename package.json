@@ -1,6 +1,6 @@
 {
   "name": "vuetify-markdown-editor",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "A Vue.js Component for editing and previewing markdown.",
   "main": "./dist/vuetify-markdown-editor.common.js",
   "files": [
@@ -35,11 +35,11 @@
     "v-click-outside": "^2.1.1",
     "vue": "^2.6.6",
     "vue-no-ssr": "^1.1.1",
-    "vuetify": "^1.5.11"
+    "vuetify": "^1.5.13"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.5.5",
-    "@vue/cli-service": "^3.5.3",
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-service": "^3.7.0",
     "css-loader": "^2.1.1",
     "style-loader": "^0.23.1",
     "stylus": "^0.54.5",
