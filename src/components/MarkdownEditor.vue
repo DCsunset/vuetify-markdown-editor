@@ -21,7 +21,7 @@
 
           <template v-else>
             <div class="pa-2 outline" :style="{ borderColor: color }">
-              <toolbar :color="color" @emoji="insertEmoji" />
+              <toolbar :nativeEmoji="nativeEmoji" :color="color" @emoji="insertEmoji" />
             </div>
             <div class="outline" :style="{ borderColor: color, borderTop: 'none' }">
               <v-textarea
@@ -74,7 +74,6 @@
 
 <script>
 import marked from '../util/marked.js';
-import { VContainer, VToolbar, VLayout, VFlex, VCard, VCardText, VTextarea } from 'vuetify/lib';
 // Styles
 import Toolbar from './Toolbar.vue';
 
@@ -82,14 +81,7 @@ import '../style.css';
 
 export default {
   components: {
-    VToolbar,
-    VContainer,
-    VLayout,
-    VFlex,
-    VCard,
-    VCardText,
-    Toolbar,
-    VTextarea
+    Toolbar
   },
   props: {
     value: {
@@ -112,6 +104,10 @@ export default {
     preview: {
       type: Boolean,
       default: true
+    },
+    nativeEmoji: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
