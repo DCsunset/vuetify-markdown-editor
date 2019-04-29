@@ -87,7 +87,7 @@ Emoji:
 * [marked](https://github.com/markedjs/marked)
 * [highlight.js](https://github.com/highlightjs/highlight.js)
 * [Vuetify](https://github.com/vuetifyjs/vuetify)
-* [Emoji Mart (Vue)](https://github.com/jm-david/emoji-mart-vue)
+* [emoji-mart-vue](https://github.com/serebrov/emoji-mart-vue)
 * [v-click-outside](https://github.com/ndelvalle/v-click-outside)
 
 ## License
