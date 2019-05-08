@@ -17,22 +17,22 @@ npm install vuetify-markdown-editor
 ## Usage
 
 Since this component is based on Vuetify,
-the configuration of Vuetify is required:
+it is required to import css from Vuetfiy and import Material design css.
+Simply add the following lines to `index.html`:
 
-```js
-import Vuetify from 'vuetify';
-import 'vuetify/dist/vuetify.min.css';
-
-Vue.use(Vuetify);
+```html
+<link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
 ```
+
+Or you can use npm to install and import the corresponding css from local files.
+
 
 This package can be used in Node.js module:
 
 ```html
 <template>
-  <v-app>
-    <Editor ref="editor" :outline="true" :preview="true" v-model="text" />
-  </v-app>
+  <Editor ref="editor" :outline="true" :preview="true" v-model="text" />
 </template>
 ```
 
