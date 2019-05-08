@@ -5,8 +5,9 @@
       <v-flex xs12 :md6="preview" class="pa-3">
         <v-layout column>
           <v-card v-if="!outline">
-            <v-toolbar flat>
-              <toolbar :color="color" @emoji="insertEmoji" />
+            <!-- Toolbar's style "transform: translateY(0)" will influence the z-index, so use "z-index: 1" on toolbar-->
+            <v-toolbar style="z-index: 1" height="48px" flat>
+              <toolbar :nativeEmoji="nativeEmoji" :color="color" @emoji="insertEmoji" />
             </v-toolbar>
             <v-textarea
               solo
