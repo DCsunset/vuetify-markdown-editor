@@ -17,7 +17,7 @@ npm install vuetify-markdown-editor
 ## Usage
 
 Since this component is based on Vuetify,
-it is required to import css from Vuetfiy and import Material design css.
+it is required to import css from Vuetfiy and Material Design Icons.
 Simply add the following lines to `index.html`:
 
 ```html
