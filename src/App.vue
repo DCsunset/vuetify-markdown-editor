@@ -1,7 +1,5 @@
 <template>
-  <v-app>
-    <Editor ref="editor" nativeEmoji :preview="true" v-model="text" />
-  </v-app>
+  <Editor ref="editor" nativeEmoji outline :preview="true" v-model="text" />
 </template>
 
 <script>

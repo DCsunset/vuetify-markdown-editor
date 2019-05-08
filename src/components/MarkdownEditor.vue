@@ -21,7 +21,7 @@
           </v-card>
 
           <template v-else>
-            <div class="pa-2 outline" :style="{ borderColor: color }">
+            <div class="pa-2 outline" :style="{ borderColor: color, 'z-index': 1 }">
               <toolbar :nativeEmoji="nativeEmoji" :color="color" @emoji="insertEmoji" />
             </div>
             <div class="outline" :style="{ borderColor: color, borderTop: 'none' }">
@@ -78,10 +78,20 @@ import marked from '../util/marked.js';
 // Styles
 import Toolbar from './Toolbar.vue';
 
+// Components
+import { VContainer, VToolbar, VLayout, VFlex, VCard, VCardText, VTextarea } from 'vuetify/lib';
+
 import '../style.css';
 
 export default {
   components: {
+    VToolbar,
+    VContainer,
+    VLayout,
+    VFlex,
+    VCard,
+    VCardText,
+    VTextarea,
     Toolbar
   },
   props: {
