@@ -12,7 +12,8 @@
             <v-textarea
               solo
               flat
-              hide-details
+              :hide-details="hideDetails"
+              :hint="hint"
               auto-grow
               ref="textarea"
               :value="value"
@@ -28,7 +29,8 @@
               <v-textarea
                 solo
                 flat
-                hide-details
+                :hide-details="hideDetails"
+                :hint="hint"
                 auto-grow
                 ref="textarea"
                 :value="value"
@@ -119,12 +121,21 @@ export default {
     nativeEmoji: {
       type: Boolean,
       default: false
+    },
+    hint: {
+      type: String,
+      default: ''
     }
   },
+
   computed: {
     compiled()
     {
       return marked(this.value);
+    },
+    hideDetails()
+    {
+      return !Boolean(this.hint);
     }
   },
 
