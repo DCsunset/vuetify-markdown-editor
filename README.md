@@ -67,6 +67,7 @@ export default {
 | color       | `undefined`  | The outline and icon's color                                    |
 | preview     | `true`       | Add the responsive preview                                      |
 | nativeEmoji | `false`      | Use native emoji instead of pictures                            |
+| hint        | `''`         | Add description at the bottom                                   |
 
 
 ## Test
