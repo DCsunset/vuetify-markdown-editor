@@ -38,7 +38,7 @@ This package can be used in Node.js module:
 
 ```js
 <script>
-import { Editor } from './build-entry.js';
+import { Editor } from 'vuetify-markdown-editor';
 
 export default {
   name: 'app',
