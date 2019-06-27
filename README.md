@@ -12,6 +12,7 @@ npm install vuetify-markdown-editor
 * Editor-only and Editor-Preview mode
 * Code highlighting
 * Emoji picking
+* Math equations (using `$` and `$$`)
 * (TODO) Image uploading
 
 ## Usage
@@ -97,6 +98,7 @@ Emoji:
 
 ## Dependencies
 
+* [KaTex](https://github.com/KaTeX/KaTeX)
 * [marked](https://github.com/markedjs/marked)
 * [highlight.js](https://github.com/highlightjs/highlight.js)
 * [Vuetify](https://github.com/vuetifyjs/vuetify)
