@@ -76,7 +76,7 @@
 </style>
 
 <script>
-import marked from '../util/marked.js';
+import render from '../util/render.js';
 // Styles
 import Toolbar from './Toolbar.vue';
 
@@ -131,7 +131,7 @@ export default {
   computed: {
     compiled()
     {
-      return marked(this.value);
+      return render(this.value);
     },
     hideDetails()
     {
