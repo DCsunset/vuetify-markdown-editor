@@ -6,6 +6,18 @@
 npm install vuetify-markdown-editor
 ```
 
+Since this component is based on Vuetify,
+it is also required to import css from Vuetfiy and Material Design Icons.
+Simply add the following lines to `index.html`:
+
+```html
+<link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+```
+
+Or you can use npm to install Vuetify or Material Design Icons and import the corresponding css from local files.
+
+
 ## Features
 
 * Solo and inline mode
@@ -16,18 +28,6 @@ npm install vuetify-markdown-editor
 * (TODO) Image uploading
 
 ## Usage
-
-Since this component is based on Vuetify,
-it is required to import css from Vuetfiy and Material Design Icons.
-Simply add the following lines to `index.html`:
-
-```html
-<link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
-```
-
-Or you can use npm to install and import the corresponding css from local files.
-
 
 This package can be used in Node.js module:
 
