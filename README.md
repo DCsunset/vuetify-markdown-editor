@@ -1,5 +1,6 @@
 # vuetify-markdown-editor
 
+[![npm](https://img.shields.io/npm/v/vuetify-markdown-editor.svg)](https://www.npmjs.com/package/vuetify-markdown-editor)
 [![npm](https://img.shields.io/npm/dw/vuetify-markdown-editor.svg)](https://www.npmjs.com/package/vuetify-markdown-editor)
 [![GitHub](https://img.shields.io/github/license/DCsunset/vuetify-markdown-editor.svg?color=blue)](https://github.com/DCsunset/vuetify-markdown-editor/blob/master/LICENSE)
 
