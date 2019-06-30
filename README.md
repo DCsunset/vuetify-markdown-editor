@@ -28,7 +28,7 @@ Or you can use npm to install Vuetify or Material Design Icons and import the co
 * Editor-only and Editor-Preview mode
 * Code highlighting
 * Emoji picking
-* Math equations (using `$` and `$$`)
+* Math formula (using `$` and `$$`)
 * (TODO) Image uploading
 
 ## Usage
