@@ -4,6 +4,8 @@
 [![npm](https://img.shields.io/npm/dw/vuetify-markdown-editor.svg)](https://www.npmjs.com/package/vuetify-markdown-editor)
 [![GitHub](https://img.shields.io/github/license/DCsunset/vuetify-markdown-editor.svg?color=blue)](https://github.com/DCsunset/vuetify-markdown-editor/blob/master/LICENSE)
 
+A Vue.js Component for editing and previewing markdown using Vuetify.js and command line rendering utility.
+
 ## Install 
 
 ```
@@ -21,6 +23,30 @@ Simply add the following lines to `index.html`:
 
 Or you can use npm to install Vuetify or Material Design Icons and import the corresponding css from local files.
 
+
+## Command line utility
+
+This package also provides a command line utility to render markdown files.
+
+Install globally:
+
+```
+npm install -g vuetify-markdown-editor
+```
+
+Usage:
+
+```
+render-cli infile.md [outfile.html]
+```
+
+To use the rendered html,
+remember to add css files for Katex and highlight.js:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+```
 
 ## Features
 
