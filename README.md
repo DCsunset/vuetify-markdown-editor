@@ -34,10 +34,17 @@ Install globally:
 npm install -g vuetify-markdown-editor
 ```
 
+Or install locally and use `npx` to run:
+
+```
+npm install vuetify-markdown-editor
+npx render-cli input.md [output.html]
+```
+
 Usage:
 
 ```
-render-cli infile.md [outfile.html]
+render-cli input.md [output.html]
 ```
 
 To use the rendered html,
