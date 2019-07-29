@@ -1,7 +1,6 @@
-code
-{
+.v-application .md code {
 	font-weight: initial;
-	background: #1d1f21;
+	background-color: #1d1f21;
 	color: white;
 	font-size: 95%;
 	display: inline-block;
@@ -9,36 +8,38 @@ code
 	margin: 2px;
 	margin-bottom: 12px;
 }
-code:before,
-code:after
-{
+.v-application .md code:before,
+.v-application .md code:after {
 	content: initial;
 }
 
 /* Change h1, h2... styles to make markdown format better */
-h1
-{
+.v-application .md h1 {
 	font-size: 1.8em;
 	margin: 0.3em 0;
-	//border-bottom: 1px solid #eaecef;
+	/* border-bottom: 1px solid #eaecef; */
 }
 
-h2
-{
+.v-application .md h2 {
 	margin: 0.25em 0;
 }
 
-h3
-{
+.v-application .md h3 {
 	margin: 0.12em 0;
 }
 
-p
-{
+.v-application .md p {
 	margin-bottom: 12px;
 }
 
-.markdown-text
-{
-  word-wrap: break-word;
+.v-application .md {
+	word-wrap: break-word;
+}
+
+.md .theme--light.v-card .v-card__text {
+	color: black;
+}
+
+.md .theme--dark.v-card .v-card__text {
+	color: white;
 }

@@ -1,5 +1,5 @@
 <template>
-  <v-container style="padding: 0" fluid>
+  <v-container fluid>
     <v-layout row wrap>
       <!-- Editor -->
       <v-flex xs12 :md6="preview" class="pa-3">
@@ -9,6 +9,7 @@
             <v-toolbar style="z-index: 1" height="48px" flat>
               <toolbar :nativeEmoji="nativeEmoji" :color="color" @emoji="insertEmoji" />
             </v-toolbar>
+            <v-divider />
             <v-textarea
               solo
               flat
@@ -44,14 +45,14 @@
       <!-- Preview -->
       <v-flex v-if="preview" v-show="compiled" xs12 :md6="preview" class="pa-3">
         <v-card v-if="!outline">
-          <v-card-text v-if="mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
+          <v-card-text v-if="mode === 'Rendered'" class="subheading md" v-html="compiled" />
           <v-card-text v-else-if="mode === 'Source'" class="subheading">
             {{ compiled }}
           </v-card-text>
         </v-card>
 
         <div v-else :style="{ borderColor: color }" class="pa-3 outline">
-          <div v-if="mode === 'Rendered'" class="subheading markdown-text" v-html="compiled" />
+          <div v-if="mode === 'Rendered'" class="subheading md" v-html="compiled" />
           <div v-else-if="mode === 'Source'" class="subheading">
             {{ compiled }}
           </div>
@@ -80,20 +81,10 @@ import render from '../util/render.js';
 // Styles
 import Toolbar from './Toolbar.vue';
 
-// Components
-import { VContainer, VToolbar, VLayout, VFlex, VCard, VCardText, VTextarea } from 'vuetify/lib';
-
 import '../style.css';
 
 export default {
   components: {
-    VToolbar,
-    VContainer,
-    VLayout,
-    VFlex,
-    VCard,
-    VCardText,
-    VTextarea,
     Toolbar
   },
   props: {

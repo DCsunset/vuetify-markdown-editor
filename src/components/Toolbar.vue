@@ -28,9 +28,6 @@ import { Picker } from 'emoji-mart-vue-fast';
 // v-click-outside
 import vClickOutside from 'v-click-outside';
 
-// components
-import { VHover, VIcon } from 'vuetify/lib';
-
 // CSS
 import 'emoji-mart-vue-fast/css/emoji-mart.css';
 
@@ -47,9 +44,7 @@ export default {
     }
   },
   components: {
-    Picker,
-    VIcon,
-    VHover
+    Picker
   },
   directives: {
     clickOutside: vClickOutside.directive
