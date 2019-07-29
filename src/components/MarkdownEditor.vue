@@ -45,8 +45,8 @@
       <!-- Preview -->
       <v-flex v-if="preview" v-show="compiled" xs12 :md6="preview" class="pa-3">
         <v-card v-if="!outline">
-          <v-card-text v-if="mode === 'Rendered'" class="subheading md" v-html="compiled" />
-          <v-card-text v-else-if="mode === 'Source'" class="subheading">
+          <v-card-text v-if="mode === 'Rendered'" class="subheading text--primary markdown-text" v-html="compiled" />
+          <v-card-text v-else-if="mode === 'Source'" class="subheading text--primary markdown-text">
             {{ compiled }}
           </v-card-text>
         </v-card>

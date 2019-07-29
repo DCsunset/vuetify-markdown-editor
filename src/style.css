@@ -17,7 +17,6 @@
 .v-application .md h1 {
 	font-size: 1.8em;
 	margin: 0.3em 0;
-	/* border-bottom: 1px solid #eaecef; */
 }
 
 .v-application .md h2 {
@@ -32,14 +31,6 @@
 	margin-bottom: 12px;
 }
 
-.v-application .md {
+.markdown-text {
 	word-wrap: break-word;
-}
-
-.md .theme--light.v-card .v-card__text {
-	color: black;
-}
-
-.md .theme--dark.v-card .v-card__text {
-	color: white;
 }
