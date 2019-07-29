@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container class="md" fluid>
     <v-layout row wrap>
       <!-- Editor -->
       <v-flex xs12 :md6="preview" class="pa-3">

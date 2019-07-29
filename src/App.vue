@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Editor class="md" mode="Rendered" ref="editor" hint="Test" nativeEmoji :preview="true" v-model="text" />
+    <Editor mode="Rendered" ref="editor" hint="Test" nativeEmoji :preview="true" v-model="text" />
   </v-app>
 </template>
 
