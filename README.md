@@ -53,8 +53,9 @@ remember to add css files for Katex and highlight.js:
 * Editor-only and Editor-Preview mode
 * Code highlighting
 * Emoji picking
-* Math formula (using `$` and `$$`)
+* Math formula (use `\\[` and `\\]` for formula block, and `\\(` and `\\)` for inline formula)
 * (TODO) Image uploading
+* (TODO) Provide an option to disable spell checking
 
 ## Usage
 
@@ -84,6 +85,8 @@ export default {
   },
   mounted() {
     this.$refs.editor.focus();
+    // Dark theme
+    //this.$vuetify.theme.dark = true;
   }
 };
 </script>
@@ -115,16 +118,16 @@ npm run serve
 Then open <http://localhost:8080> in browser to test.
 
 
-## Screenshot
+## Screenshots
 
 Solo mode: `<Editor v-model="text" />`
-![Screenshot](Screenshot.png)
+![Solo](screenshots/solo.png)
 
 Outline mode: `<Editor outline v-model="text" />`
-![Screenshot-Outline](Screenshot-Outline.png)
+![Outline](screenshots/outline.png)
 
 Emoji:
-![Screenshot-Emoji](Screenshot-Emoji.png)
+![Emoji](screenshots/emoji.png)
 
 
 ## Dependencies
@@ -139,4 +142,3 @@ Emoji:
 ## License
 
 MIT License
-

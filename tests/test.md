@@ -1,17 +1,36 @@
 # Test
 
+This is a test markdown.
+
 ## Code
 
-```cpp
-int main()
-{
-	return 0;
-}
+Code block:
+
+```js
+export default {
+  name: 'app',
+  components: {
+    Editor
+  },
+  data() {
+    return {
+      text: ''
+    };
+  },
+  mounted() {
+    this.$refs.editor.focus();
+    // Dark theme
+    //this.$vuetify.theme.dark = true;
+  }
+};
 ```
 
-`int b = 3`
+Inline code: `int b = 3`
 
 ## Math
 
-$$ \sum_{n=0}^\infty \frac{1}{n!}x^n = e^x  $$
+Formula block:
 
+\\[ \sum_{n=0}^\infty \frac{1}{n!}x^n = e^x  \\]
+
+Inline formula: \\( y = e^x \\)

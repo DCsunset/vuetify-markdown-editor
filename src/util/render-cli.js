@@ -52,17 +52,16 @@ function renderMath(text, options)
 const defaultOptions = {
 	katex: {
 		delimiters: [
-			// $$ should come before $
 			{
-				left: '$$',
-				right: '$$',
+				left: '\\[',
+				right: '\\]',
 				options: {
 					displayMode: true // Inline or block
 				}
 			},
 			{
-				left: '$',
-				right: '$',
+				left: '\\(',
+				right: '\\)',
 				options: {
 					displayMode: false // Inline or block
 				}
@@ -112,4 +111,3 @@ else
 {
 	fs.writeFileSync(args[1], renderedData, encoding='utf8');
 }
-

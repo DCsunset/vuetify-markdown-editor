@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Editor mode="Rendered" ref="editor" hint="Test" nativeEmoji :preview="true" v-model="text" />
+    <Editor mode="Rendered" ref="editor" hint="Test" nativeEmoji :outline="false" :preview="true" v-model="text" />
   </v-app>
 </template>
 
@@ -19,6 +19,7 @@ export default {
   },
   mounted() {
     this.$refs.editor.focus();
+    // Dark
     //this.$vuetify.theme.dark = true;
   }
 };
