@@ -8,6 +8,11 @@
 	margin: 2px;
 	margin-bottom: 12px;
 }
+/* Code block */
+.v-application .md code.hljs {
+	display: block;
+	padding: 0.5em;
+}
 .v-application .md code:before,
 .v-application .md code:after {
 	content: initial;
