@@ -75,6 +75,8 @@ const render = (text, options = {}) => {
 	// Default value
 	Object.assign(options, defaultOptions);
 
+	// text can't be null or undefined
+	text = text || ''
 	return renderMath(marked(text), options.katex);
 };
 
