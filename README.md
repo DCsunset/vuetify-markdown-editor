@@ -55,7 +55,6 @@ remember to add css files for Katex and highlight.js:
 * Emoji picking
 * Math formula (use `\\[` and `\\]` for formula block, and `\\(` and `\\)` for inline formula)
 * (TODO) Image uploading
-* (TODO) Provide an option to disable spell checking
 
 ## Usage
 
