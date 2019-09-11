@@ -1,17 +1,5 @@
 <template>
   <div>
-    <v-hover>
-      <!-- Must use click.stop to prevent v-click-outside event -->
-      <v-icon
-        slot-scope="{ hover }"
-        :color="hover || emojiPicker ? 'blue' : color"
-        title="Emoji"
-        @click.stop="emojiPicker = !emojiPicker"
-        >
-        insert_emoticon
-      </v-icon>
-    </v-hover>
-
     <Picker
       v-show="emojiPicker" v-click-outside="() => this.emojiPicker = false"
       title="Pick an emoji..."
@@ -20,14 +8,39 @@
       :pickerStyles="{ position: 'absolute' }"
       @select="select"
       />
+
+    <v-hover v-if="emoji">
+      <!-- Must use click.stop to prevent v-click-outside event -->
+      <v-icon
+        class="mr-2"
+        slot-scope="{ hover }"
+        :color="hover || emojiPicker ? color : undefined"
+        title="Emoji"
+        @click.stop="emojiPicker = !emojiPicker"
+        >
+        mdi-emoticon-outline
+      </v-icon>
+    </v-hover>
+     
+    <v-hover v-if="image">
+      <!-- Must use click.stop to prevent v-click-outside event -->
+      <v-icon
+        id="md-image"
+        slot-scope="{ hover }"
+        class="mr-2"
+        :color="hover ? color : undefined"
+        title="Image"
+        @click.stop=""
+        >
+        mdi-image-outline
+      </v-icon>
+    </v-hover>
   </div>
 </template>
 
 <script>
 import { Picker } from 'emoji-mart-vue-fast';
-// v-click-outside
 import vClickOutside from 'v-click-outside';
-
 // CSS
 import 'emoji-mart-vue-fast/css/emoji-mart.css';
 
@@ -36,29 +49,40 @@ export default {
     // Icon color
     color: {
       type: String,
-      default: undefined
+      default: 'blue'
     },
     nativeEmoji: {
       type: Boolean,
       default: false
+    },
+    // Enable emoji
+    emoji: {
+      type: Boolean,
+      default: true
+    },
+    // Enable image upload
+    image: {
+      type: Boolean,
+      default: true
     }
   },
+
   components: {
     Picker
   },
+
   directives: {
     clickOutside: vClickOutside.directive
   },
-  data()
-  {
+
+  data() {
     return {
       emojiPicker: false
     };
   },
 
   methods: {
-    select(emoji)
-    {
+    select(emoji) {
       this.$emit('emoji', emoji);
       // Close
       this.emojiPicker = false;
