@@ -16,11 +16,6 @@ export default {
     return {
       text: ''
     };
-  },
-  mounted() {
-    this.$refs.editor.focus();
-    // Dark theme
-    //this.$vuetify.theme.dark = true;
   }
 };
 ```

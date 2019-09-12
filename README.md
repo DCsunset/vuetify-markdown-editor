@@ -62,7 +62,7 @@ remember to add css files for Katex and highlight.js:
 - Code highlighting
 - Emoji picking
 - Math formula (use `\\[` and `\\]` for formula block, and `\\(` and `\\)` for inline formula)
-- Image uploading and previewing
+- Image uploading and previewing (to use uploaded image in markdown, use the filename as the link)
 
 ## Usage
 
@@ -158,6 +158,9 @@ Solo mode: `<Editor v-model="text" />`
 
 Outline mode: `<Editor outline v-model="text" />`
 ![Outline](screenshots/outline.png)
+
+Dark mode: `this.$vuetify.theme.dark = true;`
+![Dark](screenshots/dark.png)
 
 Emoji:
 ![Emoji](screenshots/emoji.png)

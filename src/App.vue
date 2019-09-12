@@ -31,7 +31,7 @@ export default {
     // this.$refs.editor.upload();
 
     // Dark theme
-    //this.$vuetify.theme.dark = true;
+    this.$vuetify.theme.dark = true;
   }
 };
 </script>
