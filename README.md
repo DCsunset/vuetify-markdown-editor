@@ -70,7 +70,7 @@ This package can be used in Node.js module:
 
 ```html
 <template>
-	<v-app>
+  <v-app>
     <Editor
       mode="Rendered"
       ref="editor"
@@ -80,7 +80,7 @@ This package can be used in Node.js module:
       :preview="true"
       v-model="text"
       />
-	</v-app>
+  </v-app>
 </template>
 
 <script>
