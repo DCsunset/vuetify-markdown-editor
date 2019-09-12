@@ -34,3 +34,7 @@ Formula block:
 \\[ \sum_{n=0}^\infty \frac{1}{n!}x^n = e^x  \\]
 
 Inline formula: \\( y = e^x \\)
+
+## Image
+
+![Test](test.png)

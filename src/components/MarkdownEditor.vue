@@ -164,7 +164,7 @@ export default {
     return {
       // flow.js
       flow: undefined,
-      dataUris: new Map()
+      dataUris: {}
     };
   },
 
@@ -175,7 +175,8 @@ export default {
       // Preview uploaded images
       if (this.files) {
         for (const file of this.files)
-          compiled = compiled.replace(`src="${file.name}"`, `src="${this.dataUris[file.name]}"`);
+          if (this.dataUris[file.name])
+            compiled = compiled.replace(`src="${file.name}"`, `src="${this.dataUris[file.name]}"`);
       }
 
       return compiled;
@@ -189,10 +190,6 @@ export default {
   },
 
   mounted() {
-    // Watch multiple properties
-    this.$watch(vm => [vm.compiled, vm.dataUris], () => {
-    });
-
     if (this.image) {
       this.flow = new Flow({
         target: this.fileTarget
@@ -205,14 +202,13 @@ export default {
         // Use filter to allow specific files
         const accepted = this.fileFilter(file.file);
         if (accepted) {
-          // Add empty string to take the place
-          this.dataUris.set(file.name, '');
-
+          // Use empty string to take the place
+          this.dataUris[file.name] = '';
           // Generate datauri
           const reader = new FileReader();
           reader.addEventListener('load', () => {
-            // Prevent that the file has been removed
-            if (this.dataUris.has(file.name))
+            // Prevent that image has been deleted
+            if (this.dataUris.hasOwnProperty(file.name))
               this.dataUris[file.name] = reader.result;
           }, false);
           reader.readAsDataURL(file.file);
@@ -222,7 +218,7 @@ export default {
 
       this.flow.on('fileRemoved', file => {
         // Remove dataUri
-        this.dataUris.delete(file.name);
+        delete this.dataUris[file.name];
       });
       
       this.flow.on('error', message => {
