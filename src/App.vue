@@ -5,7 +5,7 @@
       ref="editor"
       hint="Test"
       nativeEmoji
-      :outline="true"
+      :outline="false"
       :preview="true"
       v-model="text"
       />
@@ -26,8 +26,11 @@ export default {
     };
   },
   mounted() {
+    // Access properties or methods using $refs
     this.$refs.editor.focus();
-    // Dark
+    // this.$refs.editor.upload();
+
+    // Dark theme
     //this.$vuetify.theme.dark = true;
   }
 };

@@ -64,7 +64,7 @@
       </v-flex>
 
       <!-- Preview -->
-      <v-flex v-if="preview" v-show="compiled" xs12 :md6="preview" class="pa-3">
+      <v-flex class="md-preview pa-3" v-if="preview" v-show="compiled" xs12 :md6="preview">
         <v-card v-if="!outline">
           <v-card-text v-if="mode === 'Rendered'" class="subheading text--primary markdown-text" v-html="compiled" />
           <v-card-text v-else-if="mode === 'Source'" class="subheading text--primary markdown-text">
@@ -155,23 +155,30 @@ export default {
     },
     fileFilter: {
       type: Function,
-      default: file => {
-        // Allow only image files
-        return file.type.startsWith('image');
-      }
+      // Allow only image files
+      default: file => file.type.startsWith('image')
     }
   },
 
   data() {
     return {
       // flow.js
-      flow: undefined
+      flow: undefined,
+      dataUris: new Map()
     };
   },
 
   computed: {
     compiled() {
-      return render(this.value);
+      let compiled = render(this.value);
+
+      // Preview uploaded images
+      if (this.files) {
+        for (const file of this.files)
+          compiled = compiled.replace(`src="${file.name}"`, `src="${this.dataUris[file.name]}"`);
+      }
+
+      return compiled;
     },
     hideDetails() {
       return !Boolean(this.hint);
@@ -182,6 +189,10 @@ export default {
   },
 
   mounted() {
+    // Watch multiple properties
+    this.$watch(vm => [vm.compiled, vm.dataUris], () => {
+    });
+
     if (this.image) {
       this.flow = new Flow({
         target: this.fileTarget
@@ -189,10 +200,29 @@ export default {
       this.flow.assignBrowse(document.getElementById('md-image'));
       this.flow.assignDrop(document.getElementById('md-editor'));
 
-      this.flow.on('fileAdded', (file, event) => {
+      this.flow.on('fileAdded', file => {
         this.$emit('fileAdded', file.file);
         // Use filter to allow specific files
-        return this.fileFilter(file.file);
+        const accepted = this.fileFilter(file.file);
+        if (accepted) {
+          // Add empty string to take the place
+          this.dataUris.set(file.name, '');
+
+          // Generate datauri
+          const reader = new FileReader();
+          reader.addEventListener('load', () => {
+            // Prevent that the file has been removed
+            if (this.dataUris.has(file.name))
+              this.dataUris[file.name] = reader.result;
+          }, false);
+          reader.readAsDataURL(file.file);
+        }
+        return accepted;
+      });
+
+      this.flow.on('fileRemoved', file => {
+        // Remove dataUri
+        this.dataUris.delete(file.name);
       });
       
       this.flow.on('error', message => {
@@ -207,14 +237,19 @@ export default {
       this.$refs.textarea.focus();
     },
 
-    // upload all images
+    // start or resume uploading all images
     upload() {
       this.flow.upload();
     },
 
-    // retry
-    upload() {
-      this.flow.retry();
+    // pause uploading
+    pause() {
+      this.flow.pause();
+    },
+
+    // resume uploading
+    resume() {
+      this.flow.resume();
     },
 
     removeFile(file) {
@@ -237,7 +272,6 @@ export default {
       // Update cursor after the data updated
       this.$nextTick(() => {
         textarea.selectionEnd = startPos + emoji.native.length;
-        //console.log(textarea.selectionStart, textarea.selectionEnd);
       });
     }
   }

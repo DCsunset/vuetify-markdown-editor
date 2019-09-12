@@ -6,6 +6,8 @@ import 'highlight.js/styles/tomorrow-night.css';
 
 // Create your custom renderer.
 const markedRenderer = new marked.Renderer();
+
+// Highlight code
 markedRenderer.code = (code, language) => {
 	// Check whether the given language is valid for highlight.js.
 	const validLang = !!(language && hljs.getLanguage(language));
