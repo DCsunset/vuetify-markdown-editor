@@ -203,13 +203,13 @@ export default {
         const accepted = this.fileFilter(file.file);
         if (accepted) {
           // Use empty string to take the place
-          this.dataUris[file.name] = '';
+          this.$set(this.dataUris, file.name, '');
           // Generate datauri
           const reader = new FileReader();
           reader.addEventListener('load', () => {
             // Prevent that image has been deleted
             if (this.dataUris.hasOwnProperty(file.name))
-              this.dataUris[file.name] = reader.result;
+              this.$set(this.dataUris, file.name, reader.result);
           }, false);
           reader.readAsDataURL(file.file);
         }
@@ -218,7 +218,7 @@ export default {
 
       this.flow.on('fileRemoved', file => {
         // Remove dataUri
-        delete this.dataUris[file.name];
+        this.$delete(this.dataUris, file.name);
       });
       
       this.flow.on('error', message => {
