@@ -30,6 +30,7 @@
               auto-grow
               ref="textarea"
               :value="value"
+              @keydown.tab.prevent="insertText('\t')"
               @input="val => $emit('input', val)"
               />
           </v-card>
@@ -56,6 +57,7 @@
                 auto-grow
                 ref="textarea"
                 :value="value"
+                @keydown.tab.prevent="insertText('\t')"
                 @input="val => $emit('input', val)"
                 />
             </div>
@@ -253,6 +255,10 @@ export default {
     },
 
     insertEmoji(emoji) {
+      this.insertText(emoji.native)
+    },
+
+    insertText(text) {
       // Get the element of textarea
       const textarea = this.$refs.textarea.$refs['input'];
 
@@ -260,14 +266,14 @@ export default {
       const endPos = textarea.selectionEnd;
 
       // Insert to the selection area
-      this.$emit('input', textarea.value.substring(0, startPos) + emoji.native + textarea.value.substring(endPos));
+      this.$emit('input', textarea.value.substring(0, startPos) + text + textarea.value.substring(endPos));
 
       // Focus
       textarea.focus();
 
       // Update cursor after the data updated
       this.$nextTick(() => {
-        textarea.selectionEnd = startPos + emoji.native.length;
+        textarea.selectionEnd = startPos + text.length;
       });
     }
   }
