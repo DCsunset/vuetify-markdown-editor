@@ -229,7 +229,7 @@ export default {
 				target: this.fileTarget
 			});
 			this.flow.assignBrowse(this.$refs.toolbar.$refs["md-image"].$el);
-			this.flow.assignBrowse(this.$refs["md-editor"].$el);
+			this.flow.assignDrop(this.$refs["md-editor"].$el);
 
 			this.flow.on("fileAdded", file => {
 				this.$emit("fileAdded", file.file);
