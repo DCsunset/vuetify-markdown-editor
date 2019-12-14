@@ -64,6 +64,12 @@ remember to add css files for Katex and highlight.js:
 - Math formula (use `\\[` and `\\]` for formula block, and `\\(` and `\\)` for inline formula)
 - Image uploading and previewing (to use uploaded image in markdown, use the filename as the link)
 
+## TODO
+
+* [ ] Allow custom math delimiters
+* [ ] Optimize code for better code reuse
+* [ ] Add more WYSIWYG functions
+
 ## Usage
 
 This package can be used in Node.js module:
@@ -126,18 +132,18 @@ export default {
 
 ## Methods
 
-| Method | Description |
-| ------ | ---- |
+| Method   | Description                                 |
+| -------- | ------------------------------------------- |
 | upload() | Start or resume uploading all files in list |
-| pause() | Pause uploading |
-| resume() | Resume uploading |
-| focus() | Focus on the editor |
+| pause()  | Pause uploading                             |
+| resume() | Resume uploading                            |
+| focus()  | Focus on the editor                         |
 
 ## Properties
 
-| Property | Description |
-| --- | --- |
-| files | Get all files in list in [FlowFile](https://github.com/flowjs/flow.js#flowfile) format |
+| Property | Description                                                                            |
+| -------- | -------------------------------------------------------------------------------------- |
+| files    | Get all files in list in [FlowFile](https://github.com/flowjs/flow.js#flowfile) format |
 
 ## Test
 
