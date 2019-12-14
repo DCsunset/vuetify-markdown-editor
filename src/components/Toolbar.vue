@@ -1,12 +1,13 @@
 <template>
 	<div>
-		<Picker
+		<picker
 			v-show="emojiPicker"
 			v-click-outside="() => (this.emojiPicker = false)"
+			:data="emojiIndex"
 			title="Pick an emoji..."
 			emoji="smiley"
 			:native="nativeEmoji"
-			:pickerStyles="{ position: 'absolute' }"
+			:style="{ position: 'absolute' }"
 			@select="select"
 		/>
 
@@ -40,7 +41,8 @@
 </template>
 
 <script>
-import { Picker } from "emoji-mart-vue-fast";
+import emojiData from "emoji-mart-vue-fast/data/all.json";
+import { Picker, EmojiIndex } from "emoji-mart-vue-fast";
 import vClickOutside from "v-click-outside";
 // CSS
 import "emoji-mart-vue-fast/css/emoji-mart.css";
@@ -78,7 +80,8 @@ export default {
 
 	data() {
 		return {
-			emojiPicker: false
+			emojiPicker: false,
+			emojiIndex: new EmojiIndex(emojiData)
 		};
 	},
 

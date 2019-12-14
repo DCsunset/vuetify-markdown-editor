@@ -6,7 +6,11 @@
 				<v-layout column>
 					<v-card v-if="!outline" ref="md-editor">
 						<!-- Toolbar's style "transform: translateY(0)" will influence the z-index, so use "z-index: 1" on toolbar-->
-						<v-toolbar style="z-index: 1" height="48px" flat>
+						<v-toolbar
+							:style="{ position: 'relative', 'z-index': 1 }"
+							height="48px"
+							flat
+						>
 							<toolbar
 								ref="toolbar"
 								:nativeEmoji="nativeEmoji"
@@ -36,10 +40,15 @@
 						/>
 					</v-card>
 
-					<div v-else ref="md-editor">
+					<div v-else>
 						<div
 							class="pa-2 outline"
-							:style="{ borderColor: color, 'z-index': 1 }"
+							ref="md-editor"
+							:style="{
+								position: 'relative',
+								borderColor: color,
+								'z-index': 1
+							}"
 						>
 							<toolbar
 								ref="toolbar"
