@@ -2,6 +2,12 @@
   "name": "vuetify-markdown-editor",
   "version": "1.1.2",
   "description": "A Vue.js Component for editing and previewing markdown.",
+  "author": "DCsunset",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:lib": "vue-cli-service build --target lib --name vuetify-markdown-editor --formats commonjs ./src/build-entry.js"
+  },
   "main": "./dist/vuetify-markdown-editor.common.js",
   "files": [
     "dist/*",
@@ -11,19 +17,34 @@
     "*.json",
     "screenshot/*"
   ],
+  "dependencies": {
+    "@flowjs/flow.js": "^2.13.2",
+    "core-js": "^3.5.0",
+    "emoji-mart-vue-fast": "^6.1.2",
+    "highlight.js": "^9.17.1",
+    "katex": "^0.11.1",
+    "marked": "^0.8.0",
+    "v-click-outside": "^3.0.0",
+    "vue": "^2.6.11",
+    "vuetify": "^2.1.14",
+    "vuetify-loader": "^1.4.3"
+  },
+  "devDependencies": {
+    "@mdi/font": "^4.7.95",
+    "@vue/cli-plugin-babel": "^4.1.1",
+    "@vue/cli-service": "^4.1.1",
+    "css-loader": "^3.3.2",
+    "deepmerge": "^4.2.2",
+    "fibers": "^4.0.2",
+    "sass": "^1.23.7",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.1",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "vue-template-compiler": "^2.6.11"
+  },
   "bin": {
     "render-cli": "./src/util/render-cli.js"
-  },
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build:lib": "vue-cli-service build --target lib --name vuetify-markdown-editor --formats commonjs ./src/build-entry.js"
-  },
-  "author": "DCsunset",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DCsunset/vuetify-markdown-editor"
   },
   "keywords": [
     "vue",
@@ -31,29 +52,9 @@
     "markdown",
     "markdown-editor"
   ],
-  "dependencies": {
-    "@flowjs/flow.js": "^2.13.2",
-    "emoji-mart-vue-fast": "^5.4.15",
-    "highlight.js": "^9.17.1",
-    "katex": "^0.10.2",
-    "marked": "^0.7.0",
-    "v-click-outside": "^2.1.5",
-    "vue": "^2.6.11",
-    "vuetify": "^2.1.14",
-    "vuetify-loader": "^1.4.3"
-  },
-  "devDependencies": {
-    "@mdi/font": "^4.7.95",
-    "@vue/cli-plugin-babel": "^3.12.1",
-    "@vue/cli-service": "^3.12.1",
-    "css-loader": "^3.3.2",
-    "deepmerge": "^4.2.2",
-    "fibers": "^4.0.2",
-    "sass": "^1.23.7",
-    "sass-loader": "^7.3.1",
-    "style-loader": "^0.23.1",
-    "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.6.11"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DCsunset/vuetify-markdown-editor"
   }
 }
