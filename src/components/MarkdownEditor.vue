@@ -1,281 +1,322 @@
 <template>
-  <v-container class="md" fluid>
-    <v-layout row wrap>
-      <!-- Editor -->
-      <v-flex xs12 :md6="preview" class="pa-3">
-        <v-layout column>
-          <v-card v-if="!outline" id="md-editor">
-            <!-- Toolbar's style "transform: translateY(0)" will influence the z-index, so use "z-index: 1" on toolbar-->
-            <v-toolbar style="z-index: 1" height="48px" flat>
-              <toolbar
-                :nativeEmoji="nativeEmoji"
-                :emoji="emoji"
-                :image="image"
-                :color="color"
-                @emoji="insertEmoji"
-                />
-            </v-toolbar>
+	<v-container class="md" fluid>
+		<v-layout row wrap>
+			<!-- Editor -->
+			<v-flex xs12 :md6="preview" class="pa-3">
+				<v-layout column>
+					<v-card v-if="!outline" ref="md-editor">
+						<!-- Toolbar's style "transform: translateY(0)" will influence the z-index, so use "z-index: 1" on toolbar-->
+						<v-toolbar style="z-index: 1" height="48px" flat>
+							<toolbar
+								ref="toolbar"
+								:nativeEmoji="nativeEmoji"
+								:emoji="emoji"
+								:image="image"
+								:color="color"
+								@emoji="insertEmoji"
+							/>
+						</v-toolbar>
 
-            <v-divider />
-            <template v-if="image">
-              <image-status v-if="image" :files="files" @remove="removeFile" />
-              <v-divider />
-            </template>
+						<v-divider />
+						<template v-if="image">
+							<image-status v-if="image" :files="files" @remove="removeFile" />
+							<v-divider />
+						</template>
 
-            <v-textarea
-              solo
-              flat
-              :hide-details="hideDetails"
-              :hint="hint"
-              auto-grow
-              ref="textarea"
-              :value="value"
-              @keydown.tab.prevent="insertText('\t')"
-              @input="val => $emit('input', val)"
-              />
-          </v-card>
+						<v-textarea
+							solo
+							flat
+							:hide-details="hideDetails"
+							:hint="hint"
+							auto-grow
+							ref="textarea"
+							:value="value"
+							@keydown.tab.prevent="insertText('\t')"
+							@input="val => $emit('input', val)"
+						/>
+					</v-card>
 
-          <div v-else id="md-editor">
-            <div class="pa-2 outline" :style="{ borderColor: color, 'z-index': 1 }">
-              <toolbar :nativeEmoji="nativeEmoji" :color="color" @emoji="insertEmoji" />
-            </div>
+					<div v-else ref="md-editor">
+						<div
+							class="pa-2 outline"
+							:style="{ borderColor: color, 'z-index': 1 }"
+						>
+							<toolbar
+								ref="toolbar"
+								:nativeEmoji="nativeEmoji"
+								:color="color"
+								@emoji="insertEmoji"
+							/>
+						</div>
 
-            <image-status
-              v-if="image"
-              class="outline"
-              :style="{ borderColor: color, borderTop: 'none' }"
-              :files="files"
-              @remove="removeFile"
-              />
+						<image-status
+							v-if="image"
+							class="outline"
+							:style="{ borderColor: color, borderTop: 'none' }"
+							:files="files"
+							@remove="removeFile"
+						/>
 
-            <div class="outline" :style="{ borderColor: color, borderTop: 'none' }">
-              <v-textarea
-                solo
-                flat
-                :hide-details="hideDetails"
-                :hint="hint"
-                auto-grow
-                ref="textarea"
-                :value="value"
-                @keydown.tab.prevent="insertText('\t')"
-                @input="val => $emit('input', val)"
-                />
-            </div>
-          </div>
-        </v-layout>
-      </v-flex>
+						<div
+							class="outline"
+							:style="{ borderColor: color, borderTop: 'none' }"
+						>
+							<v-textarea
+								solo
+								flat
+								:hide-details="hideDetails"
+								:hint="hint"
+								auto-grow
+								ref="textarea"
+								:value="value"
+								@keydown.tab.prevent="insertText('\t')"
+								@input="val => $emit('input', val)"
+							/>
+						</div>
+					</div>
+				</v-layout>
+			</v-flex>
 
-      <!-- Preview -->
-      <v-flex class="md-preview pa-3" v-if="preview" v-show="compiled" xs12 :md6="preview">
-        <v-card v-if="!outline">
-          <v-card-text v-if="mode === 'Rendered'" class="subheading text--primary markdown-text" v-html="compiled" />
-          <v-card-text v-else-if="mode === 'Source'" class="subheading text--primary markdown-text">
-            {{ compiled }}
-          </v-card-text>
-        </v-card>
+			<!-- Preview -->
+			<v-flex
+				class="md-preview pa-3"
+				v-if="preview"
+				v-show="compiled"
+				xs12
+				:md6="preview"
+			>
+				<v-card v-if="!outline">
+					<v-card-text
+						v-if="mode === 'Rendered'"
+						class="subheading text--primary markdown-text"
+						v-html="compiled"
+					/>
+					<v-card-text
+						v-else-if="mode === 'Source'"
+						class="subheading text--primary markdown-text"
+					>
+						{{ compiled }}
+					</v-card-text>
+				</v-card>
 
-        <div v-else :style="{ borderColor: color }" class="pa-3 outline">
-          <div v-if="mode === 'Rendered'" class="subheading md" v-html="compiled" />
-          <div v-else-if="mode === 'Source'" class="subheading">
-            {{ compiled }}
-          </div>
-        </div>
-      </v-flex>
-    </v-layout>
-  </v-container>
+				<div v-else :style="{ borderColor: color }" class="pa-3 outline">
+					<div
+						v-if="mode === 'Rendered'"
+						class="subheading md"
+						v-html="compiled"
+					/>
+					<div v-else-if="mode === 'Source'" class="subheading">
+						{{ compiled }}
+					</div>
+				</div>
+			</v-flex>
+		</v-layout>
+	</v-container>
 </template>
 
 <style scoped>
 /* Remove border-radius */
 .v-textarea >>> .v-input__control > .v-input__slot {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 
 .outline {
-  border: 1.5px solid;
+	border: 1.5px solid;
 }
 </style>
 
 <script>
-import Flow from '@flowjs/flow.js/dist/flow.min.js';
-import render from '../util/render.js';
-import Toolbar from './Toolbar.vue';
-import ImageStatus from './FileStatus.vue';
-import '../style.css';
-import { setTimeout } from 'timers';
+import Flow from "@flowjs/flow.js/dist/flow.min.js";
+import render from "../util/render.js";
+import Toolbar from "./Toolbar.vue";
+import ImageStatus from "./FileStatus.vue";
+import "../style.css";
+import { setTimeout } from "timers";
 
 export default {
-  components: {
-    Toolbar,
-    ImageStatus
-  },
-  props: {
-    value: {
-      type: String,
-      default: ''
-    },
-    mode: {
-      type: String,
-      default: 'Rendered'
-    },
-    outline: {
-      type: Boolean,
-      default: false
-    },
-    // Outline and icon default color
-    color: {
-      type: String,
-      default: undefined
-    },
-    preview: {
-      type: Boolean,
-      default: true
-    },
-    nativeEmoji: {
-      type: Boolean,
-      default: false
-    },
-    // Enable emoji
-    emoji: {
-      type: Boolean,
-      default: true
-    },
-    // Enable image upload
-    image: {
-      type: Boolean,
-      default: true
-    },
-    hint: {
-      type: String,
-      default: ''
-    },
-    // target url of uploading files
-    fileTarget: {
-      type: String,
-      default: '/'
-    },
-    fileFilter: {
-      type: Function,
-      // Allow only image files
-      default: file => file.type.startsWith('image')
-    }
-  },
+	components: {
+		Toolbar,
+		ImageStatus
+	},
+	props: {
+		value: {
+			type: String,
+			default: ""
+		},
+		mode: {
+			type: String,
+			default: "Rendered"
+		},
+		outline: {
+			type: Boolean,
+			default: false
+		},
+		// Outline and icon default color
+		color: {
+			type: String,
+			default: undefined
+		},
+		preview: {
+			type: Boolean,
+			default: true
+		},
+		nativeEmoji: {
+			type: Boolean,
+			default: false
+		},
+		// Enable emoji
+		emoji: {
+			type: Boolean,
+			default: true
+		},
+		// Enable image upload
+		image: {
+			type: Boolean,
+			default: true
+		},
+		hint: {
+			type: String,
+			default: ""
+		},
+		// target url of uploading files
+		fileTarget: {
+			type: String,
+			default: "/"
+		},
+		fileFilter: {
+			type: Function,
+			// Allow only image files
+			default: file => file.type.startsWith("image")
+		}
+	},
 
-  data() {
-    return {
-      // flow.js
-      flow: undefined,
-      dataUris: {}
-    };
-  },
+	data() {
+		return {
+			// flow.js
+			flow: undefined,
+			dataUris: {}
+		};
+	},
 
-  computed: {
-    compiled() {
-      let compiled = render(this.value);
+	computed: {
+		compiled() {
+			let compiled = render(this.value);
 
-      // Preview uploaded images
-      if (this.files) {
-        for (const file of this.files)
-          if (this.dataUris[file.name])
-            compiled = compiled.replace(`src="${file.name}"`, `src="${this.dataUris[file.name]}"`);
-      }
+			// Preview uploaded images
+			if (this.files) {
+				for (const file of this.files)
+					if (this.dataUris[file.name])
+						compiled = compiled.replace(
+							`src="${file.name}"`,
+							`src="${this.dataUris[file.name]}"`
+						);
+			}
 
-      return compiled;
-    },
-    hideDetails() {
-      return !Boolean(this.hint);
-    },
-    files() {
-      return this.flow && this.flow.files;
-    }
-  },
+			return compiled;
+		},
+		hideDetails() {
+			return !Boolean(this.hint);
+		},
+		files() {
+			return this.flow && this.flow.files;
+		}
+	},
 
-  mounted() {
-    if (this.image) {
-      this.flow = new Flow({
-        target: this.fileTarget
-      });
-      this.flow.assignBrowse(document.getElementById('md-image'));
-      this.flow.assignDrop(document.getElementById('md-editor'));
+	mounted() {
+		if (this.image) {
+			this.flow = new Flow({
+				target: this.fileTarget
+			});
+			this.flow.assignBrowse(this.$refs.toolbar.$refs["md-image"].$el);
+			this.flow.assignBrowse(this.$refs["md-editor"].$el);
 
-      this.flow.on('fileAdded', file => {
-        this.$emit('fileAdded', file.file);
-        // Use filter to allow specific files
-        const accepted = this.fileFilter(file.file);
-        if (accepted) {
-          // Use empty string to take the place
-          this.$set(this.dataUris, file.name, '');
-          // Generate datauri
-          const reader = new FileReader();
-          reader.addEventListener('load', () => {
-            // Prevent that image has been deleted
-            if (this.dataUris.hasOwnProperty(file.name))
-              this.$set(this.dataUris, file.name, reader.result);
-          }, false);
-          reader.readAsDataURL(file.file);
-        }
-        return accepted;
-      });
+			this.flow.on("fileAdded", file => {
+				this.$emit("fileAdded", file.file);
+				// Use filter to allow specific files
+				const accepted = this.fileFilter(file.file);
+				if (accepted) {
+					// Use empty string to take the place
+					this.$set(this.dataUris, file.name, "");
+					// Generate datauri
+					const reader = new FileReader();
+					reader.addEventListener(
+						"load",
+						() => {
+							// Prevent that image has been deleted
+							if (this.dataUris.hasOwnProperty(file.name))
+								this.$set(this.dataUris, file.name, reader.result);
+						},
+						false
+					);
+					reader.readAsDataURL(file.file);
+				}
+				return accepted;
+			});
 
-      this.flow.on('fileRemoved', file => {
-        // Remove dataUri
-        this.$delete(this.dataUris, file.name);
-      });
-      
-      this.flow.on('error', message => {
-        throw new Error(message);
-      });
-    }
-  },
+			this.flow.on("fileRemoved", file => {
+				// Remove dataUri
+				this.$delete(this.dataUris, file.name);
+			});
 
-  methods: {
-    // Provide a function to focus on the textarea
-    focus() {
-      this.$refs.textarea.focus();
-    },
+			this.flow.on("error", message => {
+				throw new Error(message);
+			});
+		}
+	},
 
-    // start or resume uploading all images
-    upload() {
-      this.flow.upload();
-    },
+	methods: {
+		// Provide a function to focus on the textarea
+		focus() {
+			this.$refs.textarea.focus();
+		},
 
-    // pause uploading
-    pause() {
-      this.flow.pause();
-    },
+		// start or resume uploading all images
+		upload() {
+			this.flow.upload();
+		},
 
-    // resume uploading
-    resume() {
-      this.flow.resume();
-    },
+		// pause uploading
+		pause() {
+			this.flow.pause();
+		},
 
-    removeFile(file) {
-      this.flow.removeFile(file);
-    },
+		// resume uploading
+		resume() {
+			this.flow.resume();
+		},
 
-    insertEmoji(emoji) {
-      this.insertText(emoji.native)
-    },
+		removeFile(file) {
+			this.flow.removeFile(file);
+		},
 
-    insertText(text) {
-      // Get the element of textarea
-      const textarea = this.$refs.textarea.$refs['input'];
+		insertEmoji(emoji) {
+			this.insertText(emoji.native);
+		},
 
-      const startPos = textarea.selectionStart;
-      const endPos = textarea.selectionEnd;
+		insertText(text) {
+			// Get the element of textarea
+			const textarea = this.$refs.textarea.$refs["input"];
 
-      // Insert to the selection area
-      this.$emit('input', textarea.value.substring(0, startPos) + text + textarea.value.substring(endPos));
+			const startPos = textarea.selectionStart;
+			const endPos = textarea.selectionEnd;
 
-      // Focus
-      textarea.focus();
+			// Insert to the selection area
+			this.$emit(
+				"input",
+				textarea.value.substring(0, startPos) +
+					text +
+					textarea.value.substring(endPos)
+			);
 
-      // Update cursor after the data updated
-      this.$nextTick(() => {
-        textarea.selectionEnd = startPos + text.length;
-      });
-    }
-  }
+			// Focus
+			textarea.focus();
+
+			// Update cursor after the data updated
+			this.$nextTick(() => {
+				textarea.selectionEnd = startPos + text.length;
+			});
+		}
+	}
 };
 </script>
