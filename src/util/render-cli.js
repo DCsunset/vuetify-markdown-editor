@@ -27,16 +27,13 @@ marked.setOptions({
 const katex = require('katex');
 
 // Escape special characters
-function regexEscape(text)
-{
+function regexEscape(text) {
 	return text.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
 
-function renderMath(text, options)
-{
+function renderMath(text, options) {
 	// [\s\S] match all characters including \n
-	for(const delimiter of options.delimiters)
-	{
+	for (const delimiter of options.delimiters) {
 		// s flag allows '.' to match newline
 		const left = regexEscape(delimiter.left);
 		const right = regexEscape(delimiter.right);
@@ -53,17 +50,31 @@ const defaultOptions = {
 	katex: {
 		delimiters: [
 			{
+				left: '$$',
+				right: '$$',
+				options: {
+					displayMode: true // block
+				}
+			},
+			{
 				left: '\\[',
 				right: '\\]',
 				options: {
-					displayMode: true // Inline or block
+					displayMode: true // block
+				}
+			},
+			{
+				left: '$',
+				right: '$',
+				options: {
+					displayMode: false // inline
 				}
 			},
 			{
 				left: '\\(',
 				right: '\\)',
 				options: {
-					displayMode: false // Inline or block
+					displayMode: false // inline
 				}
 			}
 		]
@@ -90,25 +101,21 @@ Usage: render-cli infile.md [outfile.html]
     -h, --help    Print this help message
 `;
 
-if(args.length == 0)
-{
+if (args.length == 0) {
 	console.log(help);
 	process.exit(1);
 }
-if(args.includes('-h') || args.includes('--help'))
-{
+if (args.includes('-h') || args.includes('--help')) {
 	console.log(help);
 	process.exit(0);
 }
 
-const data = fs.readFileSync(args[0], encoding='utf-8');
+const data = fs.readFileSync(args[0], encoding = 'utf-8');
 const renderedData = render(data);
 
-if(args.length < 2)
-{
+if (args.length < 2) {
 	console.log(renderedData);
 }
-else
-{
-	fs.writeFileSync(args[1], renderedData, encoding='utf8');
+else {
+	fs.writeFileSync(args[1], renderedData, encoding = 'utf8');
 }

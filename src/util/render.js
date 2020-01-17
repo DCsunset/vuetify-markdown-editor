@@ -56,17 +56,31 @@ const defaultOptions = {
 	katex: {
 		delimiters: [
 			{
+				left: '$$',
+				right: '$$',
+				options: {
+					displayMode: true // block
+				}
+			},
+			{
 				left: '\\[',
 				right: '\\]',
 				options: {
-					displayMode: true // Inline or block
+					displayMode: true // block
+				}
+			},
+			{
+				left: '$',
+				right: '$',
+				options: {
+					displayMode: false // inline
 				}
 			},
 			{
 				left: '\\(',
 				right: '\\)',
 				options: {
-					displayMode: false // Inline or block
+					displayMode: false // inline
 				}
 			}
 		]
