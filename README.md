@@ -61,12 +61,11 @@ remember to add css files for Katex and highlight.js:
 - Editor-only and Editor-Preview mode
 - Code highlighting
 - Emoji picking
-- Math formula (use `\\[` and `\\]` for formula block, and `\\(` and `\\)` for inline formula)
+- Math formula (use `\\[ formula \\]` or `$$ formula $$` for formula block, and `\\( formula \\)` or `$ formula $`for inline formula)
 - Image uploading and previewing (to use uploaded image in markdown, use the filename as the link)
 
 ## TODO
 
-* [ ] Allow custom math delimiters
 * [ ] Optimize code for better code reuse
 * [ ] Add more WYSIWYG functions
 
