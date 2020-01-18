@@ -137,11 +137,16 @@
 
 <script>
 import Flow from "@flowjs/flow.js/dist/flow.min.js";
+import mermaid from "mermaid";
+import Vue from "vue";
+import { mergeConfig, mergeOptions } from "../util/config";
 import render from "../util/render.js";
 import Toolbar from "./Toolbar.vue";
 import ImageStatus from "./FileStatus.vue";
 import "../style.css";
-import { setTimeout } from "timers";
+
+// Not watched variable
+let mermaidTimeout = null;
 
 export default {
 	components: {
@@ -152,6 +157,14 @@ export default {
 		value: {
 			type: String,
 			default: ""
+		},
+		renderOptions: {
+			type: Object,
+			default: undefined
+		},
+		renderConfig: {
+			type: Object,
+			default: undefined
 		},
 		mode: {
 			type: String,
@@ -210,7 +223,7 @@ export default {
 
 	computed: {
 		compiled() {
-			let compiled = render(this.value);
+			let compiled = render(this.value, this.renderOptions, this.renderConfig);
 
 			// Preview uploaded images
 			if (this.files) {
@@ -222,13 +235,30 @@ export default {
 						);
 			}
 
+			console.log("render");
+
 			return compiled;
+		},
+		config() {
+			return mergeConfig(this.renderConfig);
+		},
+		options() {
+			return mergeOptions(this.renderOptions);
 		},
 		hideDetails() {
 			return !Boolean(this.hint);
 		},
 		files() {
 			return this.flow && this.flow.files;
+		}
+	},
+
+	watch: {
+		compiled() {
+			if (this.options.mermaid) {
+				console.log("yes");
+				this.renderMermaid();
+			}
 		}
 	},
 
@@ -272,9 +302,31 @@ export default {
 				throw new Error(message);
 			});
 		}
+
+		if (this.config.mermaid) {
+			mermaid.initialize(this.config.mermaid);
+		}
 	},
 
 	methods: {
+		// Async rendering
+		renderMermaid() {
+			if (this.options.mermaid) {
+				if (mermaidTimeout) clearTimeout(mermaidTimeout);
+				mermaidTimeout = setTimeout(() => {
+					new Promise((resolve, reject) => {
+						try {
+							mermaid.init();
+						} catch (err) {
+							console.log(err);
+						}
+						resolve();
+					});
+					mermaidTimeout = null;
+				}, 300);
+			}
+		},
+
 		// Provide a function to focus on the textarea
 		focus() {
 			this.$refs.textarea.focus();

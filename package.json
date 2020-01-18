@@ -24,6 +24,7 @@
     "highlight.js": "^9.17.1",
     "katex": "^0.11.1",
     "marked": "^0.8.0",
+    "mermaid": "^8.4.5",
     "v-click-outside": "^3.0.0",
     "vue": "^2.6.11"
   },
