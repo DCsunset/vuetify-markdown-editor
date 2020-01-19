@@ -20,6 +20,7 @@
   "dependencies": {
     "@flowjs/flow.js": "^2.13.2",
     "core-js": "^3.6.4",
+    "crypto-js": "^3.1.9-1",
     "emoji-mart-vue-fast": "^6.1.2",
     "highlight.js": "^9.17.1",
     "katex": "^0.11.1",

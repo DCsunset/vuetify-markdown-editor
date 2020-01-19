@@ -138,16 +138,19 @@
 <script>
 import Flow from "@flowjs/flow.js/dist/flow.min.js";
 import mermaid from "mermaid";
-import Vue from "vue";
+import md5 from "crypto-js/md5";
 import { mergeConfig, mergeOptions } from "../util/config";
-import { sha1 } from "../util/hash";
 import render from "../util/render.js";
 import Toolbar from "./Toolbar.vue";
 import ImageStatus from "./FileStatus.vue";
 import "../style.css";
 
-// Not watched variable
+// Not watched variables
 let mermaidTimeout = null;
+// Cache to accelerate rendering
+const cache = {
+	mermaid: {}
+};
 
 export default {
 	components: {
@@ -218,17 +221,18 @@ export default {
 		return {
 			// flow.js
 			flow: undefined,
-			dataUris: {},
-			// Cache to accelerate rendering
-			cache: {
-				mermaid: {}
-			}
+			dataUris: {}
 		};
 	},
 
 	computed: {
 		compiled() {
-			let compiled = render(this.value, this.renderOptions, this.renderConfig);
+			let compiled = render(
+				this.value,
+				this.renderOptions,
+				this.renderConfig,
+				cache
+			);
 
 			// Preview uploaded images
 			if (this.files) {
@@ -260,8 +264,7 @@ export default {
 		compiled() {
 			if (this.options.mermaid) {
 				// Wait until rendered
-				// TODO: Wait until load
-				setTimeout(this.renderMermaid, 50);
+				this.$nextTick(() => this.renderMermaid());
 			}
 		}
 	},
@@ -298,7 +301,7 @@ export default {
 			});
 
 			this.flow.on("fileRemoved", file => {
-				// Remove dataUri
+				e; // Remove dataUri
 				this.$delete(this.dataUris, file.name);
 			});
 
@@ -313,42 +316,28 @@ export default {
 	},
 
 	methods: {
-		// Async rendering
-		async renderMermaid() {
+		renderMermaid() {
 			if (mermaidTimeout) clearTimeout(mermaidTimeout);
 
-			console.log("Cache", this.cache.mermaid);
+			console.log("Cache", cache.mermaid);
 			// Try cache first
 			let els = document.getElementsByClassName("mermaid");
 			const uncached = Array(els.length);
 			for (let i = 0; i < els.length; ++i) {
-				const hash = await sha1(els[i].textContent);
-				if (this.cache.mermaid[hash]) {
-					els[i].innerHTML = this.cache.mermaid[hash];
-					// To prevent rendered twice
-					els[i].className = "mermaid-cached";
-					// After changing className, the els[i] will be removed from els
-					--i;
-				} else {
-					// Record the index
-					uncached[i] = hash;
-				}
+				const hash = md5(els[i].textContent).toString();
+				// Record the index for caching later
+				uncached[i] = hash;
 			}
 
 			mermaidTimeout = setTimeout(() => {
-				new Promise((resolve, reject) => {
-					try {
-						mermaid.init();
-						// Update cache
-						els = document.getElementsByClassName("mermaid");
-						for (let i = 0; i < els.length; ++i) {
-							// In case that className is not yet replaced completely
-							if (uncached[i])
-								this.cache.mermaid[uncached[i]] = els[i].innerHTML;
-						}
-					} catch (err) {}
-					resolve();
-				});
+				try {
+					mermaid.init();
+					// Update cache
+					els = document.getElementsByClassName("mermaid");
+					for (let i = 0; i < els.length; ++i) {
+						if (uncached[i]) cache.mermaid[uncached[i]] = els[i].innerHTML;
+					}
+				} catch (err) {}
 				mermaidTimeout = null;
 			}, 300);
 		},
