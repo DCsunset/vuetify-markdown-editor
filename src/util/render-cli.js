@@ -4,10 +4,16 @@ const marked = require('marked');
 const hljs = require('highlight.js');
 
 /* Markdown renderer */
+let options = {};
 
 // Create your custom renderer.
 const markedRenderer = new marked.Renderer();
 markedRenderer.code = (code, language) => {
+	// For meraid
+	if (options.mermaid && language === 'mermaid') {
+		return `<div class="mermaid">${code}</div>`;
+	}
+
 	// Check whether the given language is valid for highlight.js.
 	const validLang = !!(language && hljs.getLanguage(language));
 	// Highlight only if the language is valid.

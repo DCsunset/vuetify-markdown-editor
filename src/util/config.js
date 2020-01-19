@@ -35,7 +35,7 @@ const defaultConfig = {
 
 const defaultOptions = {
 	katex: true,
-	mermaid: false
+	mermaid: true
 };
 
 export function mergeOptions(customOptions) {

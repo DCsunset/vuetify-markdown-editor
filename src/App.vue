@@ -25,9 +25,6 @@ export default {
 	data() {
 		return {
 			text: "",
-			renderOptions: {
-				mermaid: true
-			},
 			renderConfig: {
 				mermaid: {
 					theme: "dark"
