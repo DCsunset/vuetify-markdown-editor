@@ -39,6 +39,9 @@ Usage:
 render-cli input.md [output.html]
 ```
 
+If the output filename is not specified,
+it will print in the stdout.
+
 To use the rendered html,
 remember to add css files for Katex and highlight.js:
 
@@ -63,11 +66,12 @@ remember to add css files for Katex and highlight.js:
 - Emoji picking
 - Math formula (use `\\[ formula \\]` or `$$ formula $$` for formula block, and `\\( formula \\)` or `$ formula $`for inline formula)
 - Image uploading and previewing (to use uploaded image in markdown, use the filename as the link)
+- Mermaid diagram rendering (use code block with language `mermaid`)
 
 ## TODO
 
-* [ ] Optimize code for better code reuse
 * [ ] Add more WYSIWYG functions
+* [ ] Add plantuml support
 
 ## Usage
 
@@ -115,19 +119,77 @@ export default {
 
 ## Props
 
-| Prop        | Default                                 | Description                                                      |
-| ----------- | --------------------------------------- | ---------------------------------------------------------------- |
-| value       | `''`                                    | String that binds to the textarea                                |
-| mode        | `'Rendered'`                            | When set to 'Source', the preview will display html source code  |
-| outline     | `false`                                 | The border will be outlined instead of card style                |
-| color       | `undefined`                             | The outline and icon's color                                     |
-| preview     | `true`                                  | Add the responsive preview                                       |
-| nativeEmoji | `false`                                 | Use native emoji instead of pictures                             |
-| emoji       | `true`                                  | Enable emoji input                                               |
-| image       | `true`                                  | Enable image upload                                              |
-| hint        | `''`                                    | Add description at the bottom                                    |
-| fileTarget  | `/`                                     | Image upload target uri                                          |
-| fileFilter  | `file => file.type.startsWith('image')` | Allow only specific files. Return true to allow, false to reject |
+| Prop          | Default                                 | Description                                                      |
+| ------------- | --------------------------------------- | ---------------------------------------------------------------- |
+| value         | `''`                                    | String that binds to the textarea                                |
+| mode          | `'Rendered'`                            | When set to 'Source', the preview will display html source code  |
+| renderOptions | `undefined`                             | Override default options                                         |
+| renderConfig  | `undefined`                             | Override default configurations                                  |
+| outline       | `false`                                 | The border will be outlined instead of card style                |
+| color         | `undefined`                             | The outline and icon's color                                     |
+| preview       | `true`                                  | Add the responsive preview                                       |
+| nativeEmoji   | `false`                                 | Use native emoji instead of pictures                             |
+| emoji         | `true`                                  | Enable emoji input                                               |
+| image         | `true`                                  | Enable image upload                                              |
+| hint          | `''`                                    | Add description at the bottom                                    |
+| fileTarget    | `/`                                     | Image upload target uri                                          |
+| fileFilter    | `file => file.type.startsWith('image')` | Allow only specific files. Return true to allow, false to reject |
+
+### Default render options
+
+```js
+{
+  katex: true, // katex support
+  mermaid: true // mermaid support
+}
+```
+
+The renderer uses cache to accelerate rendering
+so that modification of other parts won't cause the mermaid diagram
+to be rendered again,
+But there's some delay when rendering new mermaid diagrams,
+due to the delay of mermaid renderer itself.
+
+### Renderer Configurations
+
+```js
+{
+	katex: {
+    // formula delimiters
+		delimiters: [
+			{
+				left: '$$',
+				right: '$$',
+				options: {
+					displayMode: true // block
+				}
+			},
+			{
+				left: '\\[',
+				right: '\\]',
+				options: {
+					displayMode: true // block
+				}
+			},
+			{
+				left: '$',
+				right: '$',
+				options: {
+					displayMode: false // inline
+				}
+			},
+			{
+				left: '\\(',
+				right: '\\)',
+				options: {
+					displayMode: false // inline
+				}
+			}
+		]
+  },
+  mermaid: undefined // The native mermaid config
+}
+```
 
 ## Methods
 
@@ -172,6 +234,7 @@ Emoji:
 
 ## Dependencies
 
+- [mermaid](https://github.com/mermaid-js/mermaid)
 - [KaTex](https://github.com/KaTeX/KaTeX)
 - [marked](https://github.com/markedjs/marked)
 - [highlight.js](https://github.com/highlightjs/highlight.js)
