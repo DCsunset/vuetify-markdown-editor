@@ -1,14 +1,14 @@
 {
   "name": "vuetify-markdown-editor",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A Vue.js Component for editing and previewing markdown.",
   "author": "DCsunset",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:lib": "vue-cli-service build --target lib --name vuetify-markdown-editor --formats commonjs ./src/build-entry.js"
+    "build:lib": "vue-cli-service build --target lib --name vuetify-markdown-editor --formats umd ./src/build-entry.js"
   },
-  "main": "./dist/vuetify-markdown-editor.common.js",
+  "main": "./dist/vuetify-markdown-editor.umd.js",
   "files": [
     "dist/*",
     "src/components/*.vue",
