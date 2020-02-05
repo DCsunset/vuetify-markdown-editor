@@ -1,16 +1,5 @@
 <template>
 	<div>
-		<picker
-			v-show="emojiPicker"
-			v-click-outside="() => (this.emojiPicker = false)"
-			:data="emojiIndex"
-			title="Pick an emoji..."
-			emoji="smiley"
-			:native="nativeEmoji"
-			:style="{ position: 'absolute' }"
-			@select="select"
-		/>
-
 		<v-hover v-if="emoji">
 			<!-- Must use click.stop to prevent v-click-outside event -->
 			<v-icon
@@ -37,6 +26,17 @@
 				mdi-image-outline
 			</v-icon>
 		</v-hover>
+
+		<picker
+			v-show="emojiPicker"
+			v-click-outside="() => (this.emojiPicker = false)"
+			:data="emojiIndex"
+			title="Pick an emoji..."
+			emoji="smiley"
+			:native="nativeEmoji"
+			:style="{ position: 'absolute' }"
+			@select="select"
+		/>
 	</div>
 </template>
 
