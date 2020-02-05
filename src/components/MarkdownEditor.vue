@@ -319,7 +319,6 @@ export default {
 		renderMermaid() {
 			if (mermaidTimeout) clearTimeout(mermaidTimeout);
 
-			console.log("Cache", cache.mermaid);
 			// Try cache first
 			let els = document.getElementsByClassName("mermaid");
 			const uncached = Array(els.length);
