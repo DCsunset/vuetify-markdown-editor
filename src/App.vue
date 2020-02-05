@@ -8,7 +8,6 @@
 			:outline="false"
 			:preview="true"
 			:render-config="renderConfig"
-			:render-options="renderOptions"
 			v-model="text"
 		/>
 	</v-app>
