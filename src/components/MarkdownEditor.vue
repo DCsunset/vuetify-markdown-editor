@@ -281,7 +281,7 @@ export default {
 			});
 
 			this.flow.on("fileRemoved", file => {
-				e; // Remove dataUri
+				// Remove dataUri
 				this.$delete(this.dataUris, file.name);
 			});
 
