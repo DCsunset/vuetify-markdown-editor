@@ -11,19 +11,48 @@
 							height="48px"
 							flat
 						>
-							<toolbar
-								ref="toolbar"
-								:nativeEmoji="nativeEmoji"
-								:emoji="emoji"
-								:image="image"
-								:color="color"
-								@emoji="insertEmoji"
+							<v-hover v-if="emoji">
+								<!-- Must use click.stop to prevent v-click-outside event -->
+								<v-icon
+									class="mr-2"
+									slot-scope="{ hover }"
+									:color="hover || emojiPicker ? color : undefined"
+									title="Emoji"
+									@click.stop="emojiPicker = !emojiPicker"
+								>
+									mdi-emoticon-outline
+								</v-icon>
+							</v-hover>
+
+							<v-hover v-if="image">
+								<!-- Must use click.stop to prevent v-click-outside event -->
+								<v-icon
+									ref="md-image"
+									slot-scope="{ hover }"
+									class="mr-2"
+									:color="hover ? color : undefined"
+									title="Image"
+									@click.stop=""
+								>
+									mdi-image-outline
+								</v-icon>
+							</v-hover>
+
+							<picker
+								v-show="emojiPicker"
+								v-click-outside="() => (this.emojiPicker = false)"
+								:data="emojiIndex"
+								title="Pick an emoji..."
+								emoji="smiley"
+								:native="nativeEmoji"
+								:style="{ position: 'absolute', top: '40px' }"
+								@select="selectEmoji"
 							/>
 						</v-toolbar>
 
 						<v-divider />
 						<template v-if="image">
-							<image-status v-if="image" :files="files" @remove="removeFile" />
+							<image-status :files="files" @remove="removeFile" />
 							<v-divider />
 						</template>
 
@@ -50,7 +79,7 @@
 				xs12
 				:md6="preview"
 			>
-				<v-card v-if="!outline">
+				<v-card :outlined="outline">
 					<v-card-text
 						v-if="mode === 'Rendered'"
 						class="subheading text--primary markdown-text"
@@ -63,17 +92,6 @@
 						{{ compiled }}
 					</v-card-text>
 				</v-card>
-
-				<div v-else :style="{ borderColor: color }" class="pa-3 outline">
-					<div
-						v-if="mode === 'Rendered'"
-						class="subheading md"
-						v-html="compiled"
-					/>
-					<div v-else-if="mode === 'Source'" class="subheading">
-						{{ compiled }}
-					</div>
-				</div>
 			</v-flex>
 		</v-layout>
 	</v-container>
@@ -85,10 +103,6 @@
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
-
-.outline {
-	border: 1.5px solid;
-}
 </style>
 
 <script>
@@ -97,8 +111,13 @@ import mermaid from "mermaid";
 import md5 from "crypto-js/md5";
 import { mergeConfig, mergeOptions } from "../util/config";
 import render from "../util/render.js";
-import Toolbar from "./Toolbar.vue";
 import ImageStatus from "./FileStatus.vue";
+import emojiData from "emoji-mart-vue-fast/data/all.json";
+import { Picker, EmojiIndex } from "emoji-mart-vue-fast";
+import vClickOutside from "v-click-outside";
+
+// CSS
+import "emoji-mart-vue-fast/css/emoji-mart.css";
 import "../style.css";
 
 // Not watched variables
@@ -110,8 +129,11 @@ const cache = {
 
 export default {
 	components: {
-		Toolbar,
+		Picker,
 		ImageStatus
+	},
+	directives: {
+		clickOutside: vClickOutside.directive
 	},
 	props: {
 		value: {
@@ -137,7 +159,7 @@ export default {
 		// Outline and icon default color
 		color: {
 			type: String,
-			default: undefined
+			default: "blue"
 		},
 		preview: {
 			type: Boolean,
@@ -177,7 +199,9 @@ export default {
 		return {
 			// flow.js
 			flow: undefined,
-			dataUris: {}
+			dataUris: {},
+			emojiPicker: false,
+			emojiIndex: new EmojiIndex(emojiData)
 		};
 	},
 
@@ -230,7 +254,7 @@ export default {
 			this.flow = new Flow({
 				target: this.fileTarget
 			});
-			this.flow.assignBrowse(this.$refs.toolbar.$refs["md-image"].$el);
+			this.flow.assignBrowse(this.$refs["md-image"].$el);
 			this.flow.assignDrop(this.$refs["md-editor"].$el);
 
 			this.flow.on("fileAdded", file => {
@@ -319,6 +343,12 @@ export default {
 
 		removeFile(file) {
 			this.flow.removeFile(file);
+		},
+
+		selectEmoji(emoji) {
+			// Close
+			this.emojiPicker = false;
+			this.insertEmoji(emoji);
 		},
 
 		insertEmoji(emoji) {
