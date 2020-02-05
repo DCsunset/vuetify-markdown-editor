@@ -4,7 +4,7 @@
 			<!-- Editor -->
 			<v-flex xs12 :md6="preview" class="pa-3">
 				<v-layout column>
-					<v-card v-if="!outline" ref="md-editor">
+					<v-card :outlined="outline" ref="md-editor">
 						<!-- Toolbar's style "transform: translateY(0)" will influence the z-index, so use "z-index: 1" on toolbar-->
 						<v-toolbar
 							:style="{ position: 'relative', 'z-index': 1 }"
@@ -39,50 +39,6 @@
 							@input="val => $emit('input', val)"
 						/>
 					</v-card>
-
-					<div v-else>
-						<div
-							class="pa-2 outline"
-							ref="md-editor"
-							:style="{
-								position: 'relative',
-								borderColor: color,
-								'z-index': 1
-							}"
-						>
-							<toolbar
-								ref="toolbar"
-								:nativeEmoji="nativeEmoji"
-								:color="color"
-								@emoji="insertEmoji"
-							/>
-						</div>
-
-						<image-status
-							v-if="image"
-							class="outline"
-							:style="{ borderColor: color, borderTop: 'none' }"
-							:files="files"
-							@remove="removeFile"
-						/>
-
-						<div
-							class="outline"
-							:style="{ borderColor: color, borderTop: 'none' }"
-						>
-							<v-textarea
-								solo
-								flat
-								:hide-details="hideDetails"
-								:hint="hint"
-								auto-grow
-								ref="textarea"
-								:value="value"
-								@keydown.tab.prevent="insertText('\t')"
-								@input="val => $emit('input', val)"
-							/>
-						</div>
-					</div>
 				</v-layout>
 			</v-flex>
 
