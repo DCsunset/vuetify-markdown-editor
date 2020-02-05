@@ -21,7 +21,7 @@
     "@flowjs/flow.js": "^2.14.0",
     "core-js": "^3.6.4",
     "crypto-js": "^3.1.9-1",
-    "emoji-mart-vue-fast": "^6.1.2",
+    "emoji-mart-vue-fast": "^7.0.0",
     "highlight.js": "^9.18.1",
     "katex": "^0.11.1",
     "marked": "^0.8.0",
