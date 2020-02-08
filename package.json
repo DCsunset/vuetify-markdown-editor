@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "@flowjs/flow.js": "^2.14.0",
-    "core-js": "^3.6.4",
+    "core-js": "^3.4.4",
     "crypto-js": "^3.1.9-1",
     "emoji-mart-vue-fast": "^7.0.0",
     "highlight.js": "^9.18.1",
@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "@mdi/font": "^4.8.95",
-    "@vue/cli-plugin-babel": "^4.1.2",
-    "@vue/cli-service": "^4.1.2",
+    "@vue/cli-plugin-babel": "^4.2.2",
+    "@vue/cli-service": "^4.2.2",
     "css-loader": "^3.4.2",
     "deepmerge": "^4.2.2",
     "fibers": "^4.0.2",
