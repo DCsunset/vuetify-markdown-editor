@@ -119,6 +119,11 @@ export default {
 </script>
 ```
 
+## Exported modules
+
+* Editor: a vue component to edit markdown
+* Renderer: a function to render markdown to html
+
 ## Props
 
 | Prop          | Default                                 | Description                                                      |
