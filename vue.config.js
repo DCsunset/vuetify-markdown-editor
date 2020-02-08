@@ -4,6 +4,9 @@ module.exports = {
 	configureWebpack: {
 		plugins: [
 			new VuetifyLoaderPlugin()
-		]
+		],
+		output: {
+			libraryExport: 'default'
+		}
 	}
 }
