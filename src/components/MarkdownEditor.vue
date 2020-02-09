@@ -45,6 +45,7 @@
 								title="Pick an emoji..."
 								emoji="smiley"
 								:native="nativeEmoji"
+								:set="emojiSet"
 								:style="{ position: 'absolute', top: '40px' }"
 								@select="selectEmoji"
 							/>
@@ -107,14 +108,14 @@
 
 <script>
 import Flow from "@flowjs/flow.js/dist/flow.min.js";
+import emojiData from "emoji-mart-vue-fast/data/all.json";
+import { Picker, EmojiIndex } from "emoji-mart-vue-fast";
+import vClickOutside from "v-click-outside";
 import mermaid from "mermaid";
 import md5 from "crypto-js/md5";
 import { mergeConfig, mergeOptions } from "../util/config";
 import render from "../util/render.js";
 import ImageStatus from "./FileStatus.vue";
-import emojiData from "emoji-mart-vue-fast/data/all.json";
-import { Picker, EmojiIndex } from "emoji-mart-vue-fast";
-import vClickOutside from "v-click-outside";
 
 // CSS
 import "emoji-mart-vue-fast/css/emoji-mart.css";
@@ -173,6 +174,11 @@ export default {
 		emoji: {
 			type: Boolean,
 			default: true
+		},
+		// Emoji set
+		emojiSet: {
+			type: String,
+			default: "apple"
 		},
 		// Enable image upload
 		image: {

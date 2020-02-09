@@ -4,7 +4,6 @@
 			mode="Rendered"
 			ref="editor"
 			hint="Test"
-			nativeEmoji
 			:outline="false"
 			:preview="true"
 			:render-config="renderConfig"
