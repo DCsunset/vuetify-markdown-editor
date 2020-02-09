@@ -71,7 +71,9 @@ remember to add css files for Katex and highlight.js:
 ## TODO
 
 * [ ] Fix SSR
-* [ ] Allow to change sets of emoji
+* [ ] Add self-hosted emoji images
+* [ ] Add emoji rendering in rendered text
+* [x] Allow to change sets of emoji
 * [ ] Add more WYSIWYG functions
 * [ ] Add plantuml support
 
@@ -137,6 +139,7 @@ export default {
 | preview       | `true`                                  | Add the responsive preview                                       |
 | nativeEmoji   | `false`                                 | Use native emoji instead of pictures                             |
 | emoji         | `true`                                  | Enable emoji input                                               |
+| emojiSet      | `"apple"`                               | Supported emoji sets: `'apple', 'google', 'twitter', 'facebook'` |
 | image         | `true`                                  | Enable image upload                                              |
 | hint          | `''`                                    | Add description at the bottom                                    |
 | fileTarget    | `/`                                     | Image upload target uri                                          |
