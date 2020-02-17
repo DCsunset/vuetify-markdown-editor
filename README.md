@@ -70,10 +70,10 @@ remember to add css files for Katex and highlight.js:
 
 ## TODO
 
-* [ ] Fix SSR
+* [x] Fix SSR
+* [x] Allow to change sets of emoji
 * [ ] Add self-hosted emoji images
 * [ ] Add emoji rendering in rendered text
-* [x] Allow to change sets of emoji
 * [ ] Add more WYSIWYG functions
 * [ ] Add plantuml support
 
