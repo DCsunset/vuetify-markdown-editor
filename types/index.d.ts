@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export declare function Renderer(
 	text: string,
 	customOptions?: {
@@ -10,6 +12,6 @@ export declare function Renderer(
 		mermaid?: any
 	},
 	renderCache?: any
-): string;
+): string
 
-export declare class Editor extends Vue { };
+export declare class Editor extends Vue { }
