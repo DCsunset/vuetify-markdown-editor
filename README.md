@@ -30,16 +30,22 @@ Or install locally and use `npx` to run:
 
 ```
 npm install vuetify-markdown-editor
-npx render-cli input.md [output.html]
+npx render-cli input.md [options]
 ```
 
 Usage:
 
 ```
-render-cli input.md [output.html]
+Usage: render-cli <input.md> [options]
+
+Options:
+  -h, --help     Show help                                    [boolean]
+  -i, --inline   Render inline markdown                       [boolean]
+  -o, --out      Output html file                              [string]
+  -v, --version  Show version number                          [boolean]
 ```
 
-If the output filename is not specified,
+If the output html file is not specified,
 it will print in the stdout.
 
 To use the rendered html,
