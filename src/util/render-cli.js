@@ -24,8 +24,7 @@ markedRenderer.code = (code, language) => {
 
 // Set the renderer to marked.
 marked.setOptions({
-	renderer: markedRenderer,
-	sanitize: true
+	renderer: markedRenderer
 });
 
 
