@@ -8,6 +8,15 @@ let options = {};
 
 // Create your custom renderer.
 const markedRenderer = new marked.Renderer();
+
+markedRenderer.paragraph = text => {
+	if (options.inline) {
+		return text + '\n';
+	}
+	else
+		return '<p>' + text + '</p>\n';
+};
+
 markedRenderer.code = (code, language) => {
 	// For meraid
 	if (options.mermaid && language === 'mermaid') {
@@ -86,9 +95,9 @@ const defaultOptions = {
 	}
 };
 
-const render = (text, options = {}) => {
+const render = (text, customOptions = {}) => {
 	// Default value
-	Object.assign(options, defaultOptions);
+	Object.assign(options, defaultOptions, customOptions);
 
 	text = text || '';
 	return renderMath(marked(text), options.katex);
@@ -98,29 +107,28 @@ const render = (text, options = {}) => {
 // Parse command and render
 
 const fs = require('fs');
-const args = process.argv.slice(2);
+const argv = require('yargs')
+	.usage('Usage: $0 <input.md> [options]')
+	.help('h')
+	.demandCommand(1)
+	.boolean('inline')
+	.describe('inline', 'Render inline markdown')
+	.string('out')
+	.describe('out', 'Output html file')
+	.alias('i', 'inline')
+	.alias('o', 'out')
+	.alias('h', 'help')
+	.alias('v', 'version')
+	.argv;
 
-const help = `
-Usage: render-cli infile.md [outfile.html]
+const data = fs.readFileSync(argv._[0], encoding = 'utf-8');
+const renderedData = render(data, {
+	inline: argv.inline
+});
 
-    -h, --help    Print this help message
-`;
-
-if (args.length == 0) {
-	console.log(help);
-	process.exit(1);
-}
-if (args.includes('-h') || args.includes('--help')) {
-	console.log(help);
-	process.exit(0);
-}
-
-const data = fs.readFileSync(args[0], encoding = 'utf-8');
-const renderedData = render(data);
-
-if (args.length < 2) {
+if (!argv.out) {
 	console.log(renderedData);
 }
 else {
-	fs.writeFileSync(args[1], renderedData, encoding = 'utf8');
+	fs.writeFileSync(argv.out, renderedData, encoding = 'utf8');
 }

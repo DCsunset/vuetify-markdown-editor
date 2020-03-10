@@ -27,7 +27,8 @@
     "marked": "^0.8.0",
     "mermaid": "^8.4.7",
     "v-click-outside": "^3.0.1",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "yargs": "^15.3.0"
   },
   "devDependencies": {
     "@mdi/font": "^4.8.95",

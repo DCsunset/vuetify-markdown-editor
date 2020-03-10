@@ -12,6 +12,14 @@ let cache = {};
 // Create your custom renderer.
 const markedRenderer = new marked.Renderer();
 
+markedRenderer.paragraph = text => {
+	if (options.inline) {
+		return text + '\n';
+	}
+	else
+		return '<p>' + text + '</p>\n';
+};
+
 // Highlight code
 markedRenderer.code = (code, language) => {
 	// For meraid
