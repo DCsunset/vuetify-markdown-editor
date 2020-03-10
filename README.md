@@ -78,7 +78,7 @@ remember to add css files for Katex and highlight.js:
 
 * [x] Fix SSR
 * [x] Allow to change sets of emoji
-* [ ] Add typescript support
+* [x] Add typescript support
 * [ ] Add self-hosted emoji images
 * [ ] Add emoji rendering in rendered text
 * [ ] Add more WYSIWYG functions
