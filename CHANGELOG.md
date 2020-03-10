@@ -1,3 +1,12 @@
+# [1.6.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.5.0...v1.6.0) (2020-03-10)
+
+
+### Features
+
+* add TypeScript support ([8248ac5](https://github.com/DCsunset/vuetify-markdown-editor/commit/8248ac551134ac18ba139eaabd74dbc6b265abab))
+
+
+
 # [1.5.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.4.0...v1.5.0) (2020-03-10)
 
 
