@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.4.0...v1.5.0) (2020-03-10)
+
+
+### Bug Fixes
+
+* remove deprecated sanitize option ([136766c](https://github.com/DCsunset/vuetify-markdown-editor/commit/136766c7e2263ffeedc743f5bce7d47576a0c3a2))
+
+
+### Features
+
+* add inline option and optimize render-cli ([217bcc7](https://github.com/DCsunset/vuetify-markdown-editor/commit/217bcc748ec0aae0fcb106da86623a0a272611c1))
+
+
+
 # [1.4.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.3.0...v1.4.0) (2020-02-17)
 
 
@@ -65,3 +79,30 @@
 * fix positioning in emoji picker ([37b0903](https://github.com/DCsunset/vuetify-markdown-editor/commit/37b090312ca98f5eda58e37b9e25f44de995cbfd))
 * fix typo in MarkdownEditor ([f81628a](https://github.com/DCsunset/vuetify-markdown-editor/commit/f81628a19427a7859f926e3da038779844a774e1))
 * remove id selector to prevent conflicts ([ba1c115](https://github.com/DCsunset/vuetify-markdown-editor/commit/ba1c115dfb4e16158fa8f70c687b22b989fb7f42))
+
+
+
+## [1.1.2](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.1.1...v1.1.2) (2019-09-30)
+
+
+
+## [1.1.1](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.1.0...v1.1.1) (2019-09-22)
+
+
+
+# [1.1.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.0.1...v1.1.0) (2019-09-12)
+
+
+
+## [1.0.1](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.0.0...v1.0.1) (2019-08-12)
+
+
+
+# [1.0.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v0.4.2...v1.0.0) (2019-07-31)
+
+
+
+## 0.4.2 (2019-07-16)
+
+
+
