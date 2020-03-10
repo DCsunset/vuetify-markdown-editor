@@ -157,8 +157,8 @@ export default {
 ```js
 {
   katex: true, // katex support
-	mermaid: true, // mermaid support
-	inline: false // render inline (without <p> block)
+  mermaid: true, // mermaid support
+  inline: false // render inline (without <p> block)
 }
 ```
 
@@ -172,38 +172,38 @@ due to the delay of mermaid renderer itself.
 
 ```js
 {
-	katex: {
+  katex: {
     // formula delimiters
-		delimiters: [
-			{
-				left: '$$',
-				right: '$$',
-				options: {
-					displayMode: true // block
-				}
-			},
-			{
-				left: '\\[',
-				right: '\\]',
-				options: {
-					displayMode: true // block
-				}
-			},
-			{
-				left: '$',
-				right: '$',
-				options: {
-					displayMode: false // inline
-				}
-			},
-			{
-				left: '\\(',
-				right: '\\)',
-				options: {
-					displayMode: false // inline
-				}
-			}
-		]
+    delimiters: [
+      {
+        left: '$$',
+        right: '$$',
+        options: {
+          displayMode: true // block
+        }
+      },
+      {
+        left: '\\[',
+        right: '\\]',
+        options: {
+          displayMode: true // block
+        }
+      },
+      {
+        left: '$',
+        right: '$',
+        options: {
+          displayMode: false // inline
+        }
+      },
+      {
+        left: '\\(',
+        right: '\\)',
+        options: {
+          displayMode: false // inline
+        }
+      }
+    ]
   },
   mermaid: undefined // The native mermaid config
 }
