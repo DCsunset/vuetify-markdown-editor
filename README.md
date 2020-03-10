@@ -150,7 +150,8 @@ export default {
 ```js
 {
   katex: true, // katex support
-  mermaid: true // mermaid support
+	mermaid: true, // mermaid support
+	inline: false // render inline (without <p> block)
 }
 ```
 
