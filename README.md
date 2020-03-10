@@ -105,6 +105,7 @@ This package can be used in Node.js module:
 
 <script>
 import { Editor } from 'vuetify-markdown-editor';
+import 'vuetify-markdown-editor/dist/vuetify-markdown-editor.css';
 
 export default {
   name: 'app',
@@ -126,6 +127,13 @@ export default {
   }
 };
 </script>
+```
+
+If you want to use the style for the rendered html,
+remember to add class `md`:
+
+```html
+<div class="md" v-html="Renderer('`test`')"></div>
 ```
 
 ## Exported modules
