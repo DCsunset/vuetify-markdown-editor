@@ -1,3 +1,12 @@
+## [1.6.1](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.6.0...v1.6.1) (2020-03-10)
+
+
+### Bug Fixes
+
+* fix typescript declaration ([08e96ee](https://github.com/DCsunset/vuetify-markdown-editor/commit/08e96eeb278a6ebc383cb8e0e4bae7eb4f627960))
+
+
+
 # [1.6.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.5.0...v1.6.0) (2020-03-10)
 
 
