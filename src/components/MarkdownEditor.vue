@@ -80,19 +80,19 @@
 				xs12
 				:md6="preview"
 			>
-				<v-card :outlined="outline">
-					<v-card-text
+				<div :outlined="outline">
+					<div
 						v-if="mode === 'Rendered'"
 						class="subheading text--primary markdown-text"
 						v-html="compiled"
 					/>
-					<v-card-text
+					<div
 						v-else-if="mode === 'Source'"
 						class="subheading text--primary markdown-text"
 					>
 						{{ compiled }}
-					</v-card-text>
-				</v-card>
+					</div>
+				</div>
 			</v-flex>
 		</v-layout>
 	</v-container>
