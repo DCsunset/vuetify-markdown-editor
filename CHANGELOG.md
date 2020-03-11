@@ -1,3 +1,13 @@
+## [1.6.2](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.6.1...v1.6.2) (2020-03-11)
+
+
+### Bug Fixes
+
+* change code background due to changes of Vuetify ([8e6e7be](https://github.com/DCsunset/vuetify-markdown-editor/commit/8e6e7bea4b0ad6e09645a9bd6113f188a345528e))
+* remove card background in preview ([d78f4e7](https://github.com/DCsunset/vuetify-markdown-editor/commit/d78f4e7c9d1f578c1e8e9888de96cce77814743f))
+
+
+
 ## [1.6.1](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.6.0...v1.6.1) (2020-03-10)
 
 
