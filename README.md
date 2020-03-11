@@ -246,16 +246,17 @@ Then open <http://localhost:8080> in browser to test.
 ## Screenshots
 
 Solo mode: `<Editor v-model="text" />`
+
 ![Solo](screenshots/solo.png)
 
-Outline mode: `<Editor outline v-model="text" />`
-![Outline](screenshots/outline.png)
-
 Dark mode: `this.$vuetify.theme.dark = true;`
+
 ![Dark](screenshots/dark.png)
 
-Emoji:
-![Emoji](screenshots/emoji.png)
+Outline mode: `<Editor outline v-model="text" />`
+
+![Outline](screenshots/outline.png)
+
 
 ## Dependencies
 
