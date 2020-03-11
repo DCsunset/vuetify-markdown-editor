@@ -129,11 +129,10 @@ export default {
 </script>
 ```
 
-If you want to use the style for the rendered html,
-remember to add class `md`:
+To use the rendered text only:
 
 ```html
-<div class="md" v-html="Renderer('`test`')"></div>
+<div class="md" v-html="Renderer('markdownString')"></div>
 ```
 
 ## Exported modules
