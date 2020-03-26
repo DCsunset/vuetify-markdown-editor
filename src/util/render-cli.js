@@ -2,6 +2,7 @@
 
 const marked = require('marked');
 const hljs = require('highlight.js');
+const lodash = require('lodash');
 
 /* Markdown renderer */
 let options = {};
@@ -97,7 +98,7 @@ const defaultOptions = {
 
 const render = (text, customOptions = {}) => {
 	// Default value
-	Object.assign(options, defaultOptions, customOptions);
+	options = _.merge(defaultOptions, customOptions);
 
 	text = text || '';
 	return renderMath(marked(text), options.katex);

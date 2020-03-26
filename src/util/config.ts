@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { Options, Config } from './types';
 
 const defaultConfig: Config = {
@@ -42,11 +43,11 @@ const defaultOptions: Options = {
 };
 
 export function mergeOptions(customOptions: Options) {
-	const options = Object.assign({}, defaultOptions);
-	return Object.assign(options, customOptions);
+	const options = _.clone(defaultOptions);
+	return _.merge(options, customOptions);
 }
 
 export function mergeConfig(customConfig: Config) {
-	const config = Object.assign({}, defaultConfig);
-	return Object.assign(config, customConfig);
+	const config = _.clone(defaultConfig);
+	return _.merge(config, customConfig);
 }
