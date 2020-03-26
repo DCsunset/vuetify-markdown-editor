@@ -9,9 +9,9 @@
 	margin-bottom: 14px;
 }
 /* Code block */
-.v-application .md code.hljs {
+.v-application .md pre code {
 	display: block;
-	padding: 0.5em;
+	padding: 0.5em 0.8em 0.5em 0.8em;
 }
 .v-application .md code:before,
 .v-application .md code:after {
