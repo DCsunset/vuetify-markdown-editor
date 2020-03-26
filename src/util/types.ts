@@ -7,10 +7,10 @@ export type Config = {
 				displayMode: boolean
 			}
 		}[]
-	},
-	code?: {
-		hook?: (code: string, language: string) => void;
-	}
+	};
+	hooks?: {
+		code?: (code: string, language: string) => void;
+	};
 };
 
 export type Options = {

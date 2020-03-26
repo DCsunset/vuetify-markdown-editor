@@ -3,16 +3,17 @@ import md5 from 'crypto-js/md5';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/tomorrow-night.css';
 import { mergeConfig, mergeOptions } from './config';
+import { Cache } from './types';
 
 /* Markdown renderer */
-let options;
-let config;
-let cache = {};
+let options: Options;
+let config: Config;
+let cache: Cache = {};
 
 // Create your custom renderer.
 const markedRenderer = new marked.Renderer();
 
-markedRenderer.paragraph = text => {
+markedRenderer.paragraph = (text: string) => {
 	if (options.inline) {
 		return text + '\n';
 	}
@@ -21,7 +22,7 @@ markedRenderer.paragraph = text => {
 };
 
 // Highlight code
-markedRenderer.code = (code, language) => {
+markedRenderer.code = (code: string, language: string) => {
 	// For meraid
 	if (options.mermaid && language === 'mermaid') {
 		// Use cache to accelerate rendering
@@ -33,6 +34,8 @@ markedRenderer.code = (code, language) => {
 		}
 		return `<div class="mermaid">${code}</div>`;
 	}
+
+	config.hooks?.code?.(code, language);
 
 	// Check whether the given language is valid for highlight.js.
 	const validLang = !!(language && hljs.getLanguage(language));
@@ -52,13 +55,14 @@ marked.setOptions({
 
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
+import { Options, Config } from './types';
 
 // Escape special characters
-function regexEscape(text) {
+function regexEscape(text: string) {
 	return text.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
 
-function renderMath(text) {
+function renderMath(text: string) {
 	if (!options.katex)
 		return text;
 	// [\s\S] match all characters including \n
@@ -75,7 +79,7 @@ function renderMath(text) {
 	return text;
 }
 
-const render = (text, customOptions, customConfig, renderCache = {}) => {
+const render = (text: string, customOptions: Options, customConfig: Config, renderCache = {}) => {
 	options = mergeOptions(customOptions);
 	config = mergeConfig(customConfig);
 	cache = renderCache;
