@@ -74,7 +74,7 @@
 
 			<!-- Preview -->
 			<v-flex
-				class="md-preview pa-3"
+				class="pa-3"
 				v-if="preview"
 				v-show="compiled"
 				xs12
@@ -114,8 +114,11 @@ import vClickOutside from "v-click-outside";
 import mermaid from "mermaid";
 import md5 from "crypto-js/md5";
 import { mergeConfig, mergeOptions } from "../util/config";
-import render from "../util/render.js";
+import render from "../util/render";
 import ImageStatus from "./FileStatus.vue";
+import ClickableIcon from "./ClickableIcon.vue";
+import Vue from 'vue';
+import _ from 'lodash';
 
 // CSS
 import "emoji-mart-vue-fast/css/emoji-mart.css";
@@ -125,13 +128,15 @@ import "../style.css";
 let mermaidTimeout = null;
 // Cache to accelerate rendering
 const cache = {
-	mermaid: {}
+	mermaid: {},
+	code: []
 };
 
 export default {
 	components: {
 		Picker,
-		ImageStatus
+		ImageStatus,
+		ClickableIcon
 	},
 	directives: {
 		clickOutside: vClickOutside.directive
@@ -213,10 +218,19 @@ export default {
 
 	computed: {
 		compiled() {
+			cache.code = [];
+			const copyConfig = {
+				hooks: {
+					code: (code, language) => {
+						cache.code.push(code);
+					}
+				}
+			};
+
 			let compiled = render(
 				this.value,
 				this.renderOptions,
-				this.renderConfig,
+				_.merge(this.renderConfig, copyConfig),
 				cache
 			);
 
@@ -248,10 +262,13 @@ export default {
 
 	watch: {
 		compiled() {
-			if (this.options.mermaid) {
 				// Wait until rendered
-				this.$nextTick(() => this.renderMermaid());
-			}
+			this.$nextTick(() => {
+				if (this.options.mermaid)
+					this.renderMermaid();
+				if (this.options.copyIcon)
+					this.renderCopyIcon();
+			})
 		}
 	},
 
@@ -302,6 +319,36 @@ export default {
 	},
 
 	methods: {
+		renderCopyIcon() {
+			const els = document.querySelectorAll('.v-application .md  pre code');
+			for (let i = 0; i < els.length; ++i) {
+				// Disable copy icon if empty
+				if (cache.code[i]) {
+					const Icon = Vue.extend(ClickableIcon)
+					const instance = new Icon({
+						parent: this,
+						propsData: {
+							title: 'Copy',
+							css: {
+								position: 'absolute',
+								top: '7.5px',
+								right: '6px'
+							}
+						},
+					});
+					// Copy code
+					instance.$on('click', () => {
+						this.$copyText(cache.code[i]);
+					});
+					instance.$slots.default = ['mdi-content-copy'];
+					instance.$slots.tooltip = ['Copied!'];
+					instance.$mount();
+					els[i].setAttribute('style', 'position: relative');
+					els[i].appendChild(instance.$el);
+				}
+			}
+		},
+
 		renderMermaid() {
 			if (mermaidTimeout) clearTimeout(mermaidTimeout);
 

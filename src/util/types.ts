@@ -17,6 +17,7 @@ export type Options = {
 	katex?: boolean;
 	mermaid?: boolean;
 	inline?: boolean;
+	copyIcon?: boolean;
 };
 
 export type Cache = {

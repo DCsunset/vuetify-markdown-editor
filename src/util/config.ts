@@ -39,7 +39,8 @@ const defaultConfig: Config = {
 const defaultOptions: Options = {
 	katex: true,
 	mermaid: true,
-	inline: false
+	inline: false,
+	copyIcon: true
 };
 
 export function mergeOptions(customOptions: Options) {
