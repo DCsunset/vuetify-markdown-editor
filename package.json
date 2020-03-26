@@ -26,6 +26,7 @@
     "emoji-mart-vue-fast": "^7.0.0",
     "highlight.js": "^9.18.1",
     "katex": "^0.11.1",
+    "lodash": "^4.17.15",
     "marked": "^0.8.0",
     "mermaid": "^8.4.7",
     "v-click-outside": "^3.0.1",
@@ -36,6 +37,10 @@
   },
   "devDependencies": {
     "@mdi/font": "^4.8.95",
+    "@types/crypto-js": "^3.1.43",
+    "@types/highlight.js": "^9.12.3",
+    "@types/katex": "^0.11.0",
+    "@types/marked": "^0.7.3",
     "@vue/cli-plugin-babel": "^4.2.2",
     "@vue/cli-plugin-typescript": "^4.2.3",
     "@vue/cli-service": "^4.2.2",

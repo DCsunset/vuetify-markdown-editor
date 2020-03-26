@@ -1,5 +1,5 @@
 import MarkdownEditor from './components/MarkdownEditor.vue';
-import render from './util/render.js';
+import render from './util/render';
 
 // Named export
 export {
