@@ -79,6 +79,8 @@ remember to add css files for Katex and highlight.js:
 * [x] Fix SSR
 * [x] Allow to change sets of emoji
 * [x] Add typescript support
+* [x] Add copy icon
+* [x] Add viewer mode
 * [ ] Add self-hosted emoji images
 * [ ] Add emoji rendering in rendered text
 * [ ] Add more WYSIWYG functions
@@ -145,27 +147,34 @@ To use the rendered text only:
 | Prop          | Default                                 | Description                                                      |
 | ------------- | --------------------------------------- | ---------------------------------------------------------------- |
 | value         | `''`                                    | String that binds to the textarea                                |
-| mode          | `'Rendered'`                            | When set to 'Source', the preview will display html source code  |
+| mode          | `'preview'`                            | Possible value `'editor'`, `'preview'` or `'viewer'`. When set to `'editor'` or `'viewer'`, only the editor or viewer is displayed, while `'preview'` mode displays both. |
 | renderOptions | `undefined`                             | Override default options                                         |
 | renderConfig  | `undefined`                             | Override default configurations                                  |
 | outline       | `false`                                 | The border will be outlined instead of card style                |
 | color         | `undefined`                             | The outline and icon's color                                     |
-| preview       | `true`                                  | Add the responsive preview                                       |
 | nativeEmoji   | `false`                                 | Use native emoji instead of pictures                             |
 | emoji         | `true`                                  | Enable emoji input                                               |
 | emojiSet      | `"apple"`                               | Supported emoji sets: `'apple', 'google', 'twitter', 'facebook'` |
 | image         | `true`                                  | Enable image upload                                              |
 | hint          | `''`                                    | Add description at the bottom                                    |
-| fileTarget    | `/`                                     | Image upload target uri                                          |
+| fileTarget    | `'/'`                                     | Image upload target uri                                          |
 | fileFilter    | `file => file.type.startsWith('image')` | Allow only specific files. Return true to allow, false to reject |
+| baseUrl | `'/'` | The baseUrl for uploaded images. **Must end with a slash** (mainly used in `viewer` mode) |
 
-### Default render options
+## Events
+
+| Event | Parameter | Description |
+| ----- | --------- | ----------- |
+| copy  | code | Emitted when the copy icon is clicked. The parameter is the corresponding code string |
+
+## Default render options
 
 ```js
 {
   katex: true, // katex support
   mermaid: true, // mermaid support
-  inline: false // render inline (without <p> block)
+  inline: false, // render inline (without <p> block)
+  copyIcon: false // Add a copy icon to the top-right corner of code blocks
 }
 ```
 
@@ -175,7 +184,7 @@ to be rendered again,
 But there's some delay when rendering new mermaid diagrams,
 due to the delay of mermaid renderer itself.
 
-### Renderer Configurations
+## Renderer Configurations
 
 ```js
 {
