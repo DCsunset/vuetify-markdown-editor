@@ -3,7 +3,7 @@
 		<template v-slot:activator="{}">
 			<v-hover v-slot:default="{ hover }">
 				<!-- Pass all props and events to child -->
-				<v-icon size="21px" @click="showTooltip" v-bind="$attrs" :title="title" :style="css" :class="{ unhover: !hover }">
+				<v-icon size="21px" @click="showTooltip" v-bind="$attrs" :title="title" :style="css" :dark="dark" :class="{ unhover: !hover }">
 					<!-- Pass default slots to v-icon -->
 					<slot name="default" />
 				</v-icon>
@@ -21,6 +21,7 @@ import { Vue, Component, Prop, Emit } from 'vue-property-decorator';
 
 @Component
 class ClickableIcon extends Vue {
+	@Prop(Boolean) readonly dark!: boolean;
 	@Prop(Object) readonly css: any;
 	@Prop(String) readonly title!: string;
 	@Prop({ default: 800 }) readonly tooltipTimeout!: number;

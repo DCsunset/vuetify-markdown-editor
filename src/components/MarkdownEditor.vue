@@ -333,7 +333,8 @@ export default {
 								position: 'absolute',
 								top: '7.5px',
 								right: '6px'
-							}
+							},
+							dark: true
 						},
 					});
 					// Copy event
