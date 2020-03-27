@@ -1,3 +1,28 @@
+# [2.0.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.6.2...v2.0.0) (2020-03-27)
+
+
+### Bug Fixes
+
+* adjust code styles ([9ba83c8](https://github.com/DCsunset/vuetify-markdown-editor/commit/9ba83c802aeed7785258bedafd1e58a6146e7294))
+* fix theme of icon ([7f857d2](https://github.com/DCsunset/vuetify-markdown-editor/commit/7f857d263ea7ed5faf66752f41f327e06289d666))
+* fix vuetify types ([938774a](https://github.com/DCsunset/vuetify-markdown-editor/commit/938774a89883c422bbe1761b60cfceadf45aa5ba))
+* use lodash to merge options and config ([47a7e8f](https://github.com/DCsunset/vuetify-markdown-editor/commit/47a7e8f82add828183edece04fc0d693c025cba3))
+
+
+### Features
+
+* add baseUrl ([75d64e2](https://github.com/DCsunset/vuetify-markdown-editor/commit/75d64e2078149f5782baf6936a77af09f0476b80))
+* add code hook and types to render.ts ([32f542d](https://github.com/DCsunset/vuetify-markdown-editor/commit/32f542d2865329d6a18eb8ce00004dba502cd3e9))
+* add copy icon for code blocks ([aae44c6](https://github.com/DCsunset/vuetify-markdown-editor/commit/aae44c6206d7af72d3b8526dd9b00fcc49adf572))
+
+
+### Performance Improvements
+
+* reduce library size ([4bd04f6](https://github.com/DCsunset/vuetify-markdown-editor/commit/4bd04f68c869f57196e024d2f851bb05afb0e664))
+* remove vue-clipboard to reduce lib size ([b274286](https://github.com/DCsunset/vuetify-markdown-editor/commit/b274286874c9750b88db84effad1ea40392fb6d3))
+
+
+
 ## [1.6.2](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.6.1...v1.6.2) (2020-03-11)
 
 
