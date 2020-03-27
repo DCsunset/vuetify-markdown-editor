@@ -195,6 +195,10 @@ export default {
 			type: Function,
 			// Allow only image files
 			default: file => file.type.startsWith("image")
+		},
+		baseUrl: {
+			type: String,
+			default: '/'
 		}
 	},
 
@@ -235,6 +239,12 @@ export default {
 							`src="${this.dataUris[file.name]}"`
 						);
 			}
+			
+			// Replace image names with baseUrl
+			compiled = compiled.replace(
+				/src="([^/]+)"/g,
+				(match, p1) => `src="${this.baseUrl}${p1}"`
+			);
 
 			return compiled;
 		},
