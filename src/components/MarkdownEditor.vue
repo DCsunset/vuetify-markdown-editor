@@ -336,9 +336,9 @@ export default {
 							}
 						},
 					});
-					// Copy code
+					// Copy event
 					instance.$on('click', () => {
-						this.$copyText(cache.code[i]);
+						this.$emit('copy', cache.code[i]);
 					});
 					instance.$slots.default = ['mdi-content-copy'];
 					instance.$slots.tooltip = ['Copied!'];

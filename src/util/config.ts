@@ -40,7 +40,7 @@ const defaultOptions: Options = {
 	katex: true,
 	mermaid: true,
 	inline: false,
-	copyIcon: true
+	copyIcon: false
 };
 
 export function mergeOptions(customOptions: Options) {
