@@ -1,100 +1,96 @@
 <template>
 	<v-container class="md" fluid>
-		<v-layout row wrap>
+		<v-row>
 			<!-- Editor -->
-			<v-flex xs12 :md6="preview" class="pa-3">
-				<v-layout column>
-					<v-card :outlined="outline" ref="md-editor">
-						<!-- Toolbar's style "transform: translateY(0)" will influence the z-index, so use "z-index: 1" on toolbar-->
-						<v-toolbar
-							:style="{ position: 'relative', 'z-index': 1 }"
-							height="48px"
-							flat
-						>
-							<v-hover v-if="emoji">
-								<!-- Must use click.stop to prevent v-click-outside event -->
-								<v-icon
-									class="mr-2"
-									slot-scope="{ hover }"
-									:color="hover || emojiPicker ? color : undefined"
-									title="Emoji"
-									@click.stop="emojiPicker = !emojiPicker"
-								>
-									mdi-emoticon-outline
-								</v-icon>
-							</v-hover>
+			<v-col
+				cols="12"
+				v-if="mode !== 'viewer'"
+				:md="mode === 'preview' ? 6 : 12"
+				class="pa-3"
+			>
+				<v-card :outlined="outline" ref="md-editor">
+					<!-- Toolbar's style "transform: translateY(0)" will influence the z-index, so use "z-index: 1" on toolbar-->
+					<v-toolbar
+						:style="{ position: 'relative', 'z-index': 1 }"
+						height="48px"
+						flat
+					>
+						<v-hover v-if="emoji">
+							<!-- Must use click.stop to prevent v-click-outside event -->
+							<v-icon
+								class="mr-2"
+								slot-scope="{ hover }"
+								:color="hover || emojiPicker ? color : undefined"
+								title="Emoji"
+								@click.stop="emojiPicker = !emojiPicker"
+							>
+								mdi-emoticon-outline
+							</v-icon>
+						</v-hover>
 
-							<v-hover v-if="image">
-								<!-- Must use click.stop to prevent v-click-outside event -->
-								<v-icon
-									ref="md-image"
-									slot-scope="{ hover }"
-									class="mr-2"
-									:color="hover ? color : undefined"
-									title="Image"
-									@click.stop=""
-								>
-									mdi-image-outline
-								</v-icon>
-							</v-hover>
+						<v-hover v-if="image">
+							<!-- Must use click.stop to prevent v-click-outside event -->
+							<v-icon
+								ref="md-image"
+								slot-scope="{ hover }"
+								class="mr-2"
+								:color="hover ? color : undefined"
+								title="Image"
+								@click.stop=""
+							>
+								mdi-image-outline
+							</v-icon>
+						</v-hover>
 
-							<picker
-								v-show="emojiPicker"
-								v-click-outside="() => (this.emojiPicker = false)"
-								:data="emojiIndex"
-								title="Pick an emoji..."
-								emoji="smiley"
-								:native="nativeEmoji"
-								:set="emojiSet"
-								:style="{ position: 'absolute', top: '40px' }"
-								@select="selectEmoji"
-							/>
-						</v-toolbar>
-
-						<v-divider />
-						<template v-if="image">
-							<image-status :files="files" @remove="removeFile" />
-							<v-divider />
-						</template>
-
-						<v-textarea
-							solo
-							flat
-							:hide-details="hideDetails"
-							:hint="hint"
-							auto-grow
-							ref="textarea"
-							:value="value"
-							@keydown.tab.prevent="insertText('\t')"
-							@input="val => $emit('input', val)"
+						<picker
+							v-show="emojiPicker"
+							v-click-outside="() => (this.emojiPicker = false)"
+							:data="emojiIndex"
+							title="Pick an emoji..."
+							emoji="smiley"
+							:native="nativeEmoji"
+							:set="emojiSet"
+							:style="{ position: 'absolute', top: '40px' }"
+							@select="selectEmoji"
 						/>
-					</v-card>
-				</v-layout>
-			</v-flex>
+					</v-toolbar>
+
+					<v-divider />
+					<template v-if="image">
+						<image-status :files="files" @remove="removeFile" />
+						<v-divider />
+					</template>
+
+					<v-textarea
+						solo
+						flat
+						:hide-details="hideDetails"
+						:hint="hint"
+						auto-grow
+						ref="textarea"
+						:value="value"
+						@keydown.tab.prevent="insertText('\t')"
+						@input="val => $emit('input', val)"
+					/>
+				</v-card>
+			</v-col>
 
 			<!-- Preview -->
-			<v-flex
+			<v-col
 				class="pa-3"
-				v-if="preview"
+				v-if="mode !== 'editor'"
 				v-show="compiled"
-				xs12
-				:md6="preview"
+				cols="12"
+				:md="mode === 'preview' ? 6 : 12"
 			>
-				<div :outlined="outline">
+				<div>
 					<div
-						v-if="mode === 'Rendered'"
 						class="subheading text--primary markdown-text"
 						v-html="compiled"
 					/>
-					<div
-						v-else-if="mode === 'Source'"
-						class="subheading text--primary markdown-text"
-					>
-						{{ compiled }}
-					</div>
 				</div>
-			</v-flex>
-		</v-layout>
+			</v-col>
+		</v-row>
 	</v-container>
 </template>
 
@@ -156,7 +152,7 @@ export default {
 		},
 		mode: {
 			type: String,
-			default: "Rendered"
+			default: "preview"
 		},
 		outline: {
 			type: Boolean,
@@ -166,10 +162,6 @@ export default {
 		color: {
 			type: String,
 			default: "blue"
-		},
-		preview: {
-			type: Boolean,
-			default: true
 		},
 		nativeEmoji: {
 			type: Boolean,
@@ -261,19 +253,22 @@ export default {
 	},
 
 	watch: {
-		compiled() {
+		compiled: {
+			immediate: true,
+			handler() {
 				// Wait until rendered
-			this.$nextTick(() => {
-				if (this.options.mermaid)
-					this.renderMermaid();
-				if (this.options.copyIcon)
-					this.renderCopyIcon();
-			})
+				this.$nextTick(() => {
+					if (this.options.mermaid)
+						this.renderMermaid();
+					if (this.options.copyIcon)
+						this.renderCopyIcon();
+				});
+			}
 		}
 	},
 
 	mounted() {
-		if (this.image) {
+		if (this.mode !== 'viewer' && this.image) {
 			this.flow = new Flow({
 				target: this.fileTarget
 			});

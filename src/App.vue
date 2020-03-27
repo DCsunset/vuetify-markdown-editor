@@ -1,11 +1,10 @@
 <template>
 	<v-app>
 		<Editor
-			mode="Rendered"
+			mode="viewer"
 			ref="editor"
 			hint="Test"
 			:outline="false"
-			:preview="true"
 			:render-config="renderConfig"
 			:render-options="renderOptions"
 			v-model="text"
@@ -23,7 +22,7 @@ export default {
 	},
 	data() {
 		return {
-			text: "",
+			text: "```cpp\nint a=1;\n```",
 			renderConfig: {
 				mermaid: {
 					theme: "dark"
@@ -36,7 +35,7 @@ export default {
 	},
 	mounted() {
 		// Access properties or methods using $refs
-		this.$refs.editor.focus();
+		// this.$refs.editor.focus();
 		// this.$refs.editor.upload();
 
 		// Dark theme
