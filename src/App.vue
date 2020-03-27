@@ -1,7 +1,7 @@
 <template>
 	<v-app>
 		<Editor
-			mode="viewer"
+			mode="preview"
 			ref="editor"
 			hint="Test"
 			:outline="false"
@@ -22,7 +22,7 @@ export default {
 	},
 	data() {
 		return {
-			text: "```cpp\nint a=1;\n```",
+			text: "",
 			renderConfig: {
 				mermaid: {
 					theme: "dark"
