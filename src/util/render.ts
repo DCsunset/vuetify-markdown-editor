@@ -71,7 +71,7 @@ function renderMath(text: string) {
 		const left = regexEscape(delimiter.left);
 		const right = regexEscape(delimiter.right);
 
-		const re = new RegExp(`${left}(.*?)${right}`, 'gs');
+		const re = new RegExp(`${left}([^]*?)${right}`, 'g');
 		text = text.replace(re, (_match, p1) => {
 			return katex.renderToString(p1, delimiter.options);
 		});
