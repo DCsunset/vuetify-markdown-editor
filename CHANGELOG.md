@@ -1,3 +1,12 @@
+## [2.0.1](https://github.com/DCsunset/vuetify-markdown-editor/compare/v2.0.0...v2.0.1) (2020-04-18)
+
+
+### Bug Fixes
+
+* fix regex flags ([cf5264f](https://github.com/DCsunset/vuetify-markdown-editor/commit/cf5264fa25e5c8142065e299e9c5edb15029f992))
+
+
+
 # [2.0.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v1.6.2...v2.0.0) (2020-03-27)
 
 

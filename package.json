@@ -1,6 +1,6 @@
 {
   "name": "vuetify-markdown-editor",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Vue.js Component for editing and previewing markdown.",
   "author": "DCsunset",
   "scripts": {
@@ -45,6 +45,7 @@
     "@vue/cli-plugin-babel": "^4.2.3",
     "@vue/cli-plugin-typescript": "^4.2.3",
     "@vue/cli-service": "^4.2.3",
+    "conventional-changelog-cli": "^2.0.31",
     "css-loader": "^3.4.2",
     "deepmerge": "^4.2.2",
     "fibers": "^4.0.2",
