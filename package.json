@@ -5,8 +5,7 @@
   "author": "DCsunset",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build:lib": "vue-cli-service build --target lib --name vuetify-markdown-editor --formats umd ./src/build-entry.js",
+    "build": "vue-cli-service build --target lib --name vuetify-markdown-editor --formats umd ./src/build-entry.js",
     "changelog": "conventional-changelog -p angular -r 0 > CHANGELOG.md"
   },
   "main": "./dist/vuetify-markdown-editor.umd.js",
