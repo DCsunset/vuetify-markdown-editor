@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/DCsunset/vuetify-markdown-editor/compare/v2.0.1...v2.0.2) (2020-04-27)
+
+
+### Bug Fixes
+
+* rebuild to fix build errors ([492643a](https://github.com/DCsunset/vuetify-markdown-editor/commit/492643af3608633d180737b29d71be59ee0bc244))
+
+
+
 ## [2.0.1](https://github.com/DCsunset/vuetify-markdown-editor/compare/v2.0.0...v2.0.1) (2020-04-18)
 
 
