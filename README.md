@@ -16,53 +16,6 @@ Since this component is based on Vuetify,
 it is required to install and configure Vuetify.
 For installing Vuetify, please visit <https://vuetifyjs.com/en/getting-started/quick-start>.
 
-## Command line utility
-
-This package also provides a command line utility to render markdown files.
-
-Install globally:
-
-```
-npm install -g vuetify-markdown-editor
-```
-
-Or install locally and use `npx` to run:
-
-```
-npm install vuetify-markdown-editor
-npx render-cli input.md [options]
-```
-
-Usage:
-
-```
-Usage: render-cli <input.md> [options]
-
-Options:
-  -h, --help     Show help                                    [boolean]
-  -i, --inline   Render inline markdown                       [boolean]
-  -o, --out      Output html file                              [string]
-  -v, --version  Show version number                          [boolean]
-```
-
-If the output html file is not specified,
-it will print in the stdout.
-
-To use the rendered html,
-remember to add css files for Katex and highlight.js:
-
-```html
-<link
-	rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-	integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j"
-	crossorigin="anonymous"
-/>
-<link
-	rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css"
-/>
-```
 
 ## Features
 
