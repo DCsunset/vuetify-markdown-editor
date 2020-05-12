@@ -1,9 +1,8 @@
-import md5 from 'crypto-js/md5';
 import 'highlight.js/styles/tomorrow-night.css';
 import MarkdownIt from 'markdown-it';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
-import { Config, Cache } from './types';
+import { Config } from './types';
 
 function createRenderer(config: Config = {}) {
 	const renderer = new MarkdownIt()
