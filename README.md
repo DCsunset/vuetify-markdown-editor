@@ -112,12 +112,6 @@ use `createRenderer` to create it.
 | fileFilter    | `file => file.type.startsWith('image')` | Allow only specific files. Return true to allow, false to reject |
 | baseUrl | `'/'` | The baseUrl for uploaded images. **Must end with a slash** (mainly used in `viewer` mode) |
 
-## Events
-
-| Event | Parameter | Description |
-| ----- | --------- | ----------- |
-| copy  | code | Emitted when the copy icon is clicked. The parameter is the corresponding code string |
-
 ## Default Renderer Configurations
 
 ```js
