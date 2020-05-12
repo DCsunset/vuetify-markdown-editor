@@ -1,6 +1,7 @@
 import Vue from 'vue'
+import MarkdownIt from 'markdown-it';
 
-export declare function Renderer(
+export declare function createRenderer(
 	text: string,
 	customOptions?: {
 		katex?: boolean,
@@ -12,6 +13,6 @@ export declare function Renderer(
 		mermaid?: any
 	},
 	renderCache?: any
-): string
+): MarkdownIt
 
 export declare class Editor extends Vue { }
