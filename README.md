@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/dm/vuetify-markdown-editor.svg)](https://www.npmjs.com/package/vuetify-markdown-editor)
 [![GitHub](https://img.shields.io/github/license/DCsunset/vuetify-markdown-editor.svg?color=blue)](https://github.com/DCsunset/vuetify-markdown-editor/blob/master/LICENSE)
 
-A Vue.js Component for editing and previewing markdown using Vuetify.js and command line rendering utility.
+A Vue.js Component for editing and previewing markdown using Vuetify.js and markdown-it.
 
 ## Install
 
@@ -131,24 +131,22 @@ export default {
 </script>
 ```
 
-To use the rendered text only:
+To show the rendered html only, use `viewer` mode.
 
-```html
-<div class="md" v-html="Renderer('markdownString')"></div>
-```
+To use the markdown-it renderer directly,
+use `createRenderer` to create it.
 
 ## Exported modules
 
 * Editor: a vue component to edit markdown
-* Renderer: a function to render markdown to html
+* createRenderer: a function to create a markdown-it render
 
 ## Props
 
-| Prop          | Default                                 | Description                                                      |
+|   Prop          | Default                                 | Description                                                      |
 | ------------- | --------------------------------------- | ---------------------------------------------------------------- |
 | value         | `''`                                    | String that binds to the textarea                                |
 | mode          | `'preview'`                            | Possible value `'editor'`, `'preview'` or `'viewer'`. When set to `'editor'` or `'viewer'`, only the editor or viewer is displayed, while `'preview'` mode displays both. |
-| renderOptions | `undefined`                             | Override default options                                         |
 | renderConfig  | `undefined`                             | Override default configurations                                  |
 | outline       | `false`                                 | The border will be outlined instead of card style                |
 | color         | `undefined`                             | The outline and icon's color                                     |
@@ -167,61 +165,20 @@ To use the rendered text only:
 | ----- | --------- | ----------- |
 | copy  | code | Emitted when the copy icon is clicked. The parameter is the corresponding code string |
 
-## Default render options
+## Default Renderer Configurations
 
 ```js
 {
-  katex: true, // katex support
-  mermaid: true, // mermaid support
-  inline: false, // render inline (without <p> block)
-  copyIcon: false // Add a copy icon to the top-right corner of code blocks
-}
-```
-
-The renderer uses cache to accelerate rendering
-so that modification of other parts won't cause the mermaid diagram
-to be rendered again,
-But there's some delay when rendering new mermaid diagrams,
-due to the delay of mermaid renderer itself.
-
-## Renderer Configurations
-
-```js
-{
-  katex: {
-    // formula delimiters
-    delimiters: [
-      {
-        left: '$$',
-        right: '$$',
-        options: {
-          displayMode: true // block
-        }
-      },
-      {
-        left: '\\[',
-        right: '\\]',
-        options: {
-          displayMode: true // block
-        }
-      },
-      {
-        left: '$',
-        right: '$',
-        options: {
-          displayMode: false // inline
-        }
-      },
-      {
-        left: '\\(',
-        right: '\\)',
-        options: {
-          displayMode: false // inline
-        }
-      }
-    ]
+  // markdown-it-texmath config
+  texmath: undefined,
+  // markdown-it-highlightjs config
+  hightlightjs: undefined,
+  // markdown-it-code-copy config
+  codeCopy: {
+    buttonClass: 'v-icon theme--dark'
   },
-  mermaid: undefined // The native mermaid config
+  // The native mermaid config
+  mermaid: undefined
 }
 ```
 
@@ -270,9 +227,12 @@ Outline mode: `<Editor outline v-model="text" />`
 ## Dependencies
 
 - [mermaid](https://github.com/mermaid-js/mermaid)
-- [KaTex](https://github.com/KaTeX/KaTeX)
-- [marked](https://github.com/markedjs/marked)
-- [highlight.js](https://github.com/highlightjs/highlight.js)
+- [KaTeX](https://github.com/KaTeX/KaTeX)
+- [markdown-it](https://github.com/markdown-it/markdown-it)
+- [markdown-it-highlightjs](https://github.com/valeriangalliat/markdown-it-highlightjs)
+- [markdown-it-texmath](https://github.com/goessner/markdown-it-texmath)
+- [markdown-it-code-copy](https://github.com/DCsunset/markdown-it-code-copy)
+- [markdown-it-mermaid-plugin](https://github.com/DCsunset/markdown-it-mermaid-plugin)
 - [Vuetify](https://github.com/vuetifyjs/vuetify)
 - [emoji-mart-vue](https://github.com/serebrov/emoji-mart-vue)
 - [v-click-outside](https://github.com/ndelvalle/v-click-outside)
