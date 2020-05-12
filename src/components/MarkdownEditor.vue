@@ -109,12 +109,11 @@ import { Picker, EmojiIndex } from "emoji-mart-vue-fast";
 import vClickOutside from "v-click-outside";
 import mermaid from "mermaid";
 import md5 from "crypto-js/md5";
-import { mergeConfig, mergeOptions } from "../util/config";
-import render from "../util/render";
+import createRenderer from "../util/render";
 import ImageStatus from "./FileStatus.vue";
-import ClickableIcon from "./ClickableIcon.vue";
 import Vue from 'vue';
 import _ from 'lodash';
+import { defaultConfig } from '@/util/config';
 
 // CSS
 import "emoji-mart-vue-fast/css/emoji-mart.css";
@@ -124,15 +123,15 @@ import "../style.css";
 let mermaidTimeout = null;
 // Cache to accelerate rendering
 const cache = {
-	mermaid: {},
-	code: []
+	mermaid: {}
 };
+
+let renderer;
 
 export default {
 	components: {
 		Picker,
-		ImageStatus,
-		ClickableIcon
+		ImageStatus
 	},
 	directives: {
 		clickOutside: vClickOutside.directive
@@ -141,10 +140,6 @@ export default {
 		value: {
 			type: String,
 			default: ""
-		},
-		renderOptions: {
-			type: Object,
-			default: undefined
 		},
 		renderConfig: {
 			type: Object,
@@ -214,20 +209,11 @@ export default {
 
 	computed: {
 		compiled() {
-			cache.code = [];
-			const copyConfig = {
-				hooks: {
-					code: (code, language) => {
-						cache.code.push(code);
-					}
-				}
-			};
-
-			let compiled = render(
-				this.value,
-				this.renderOptions,
-				_.merge(this.renderConfig, copyConfig),
+			let compiled = renderer.render(
+				this.value
+				/*
 				cache
+				*/
 			);
 
 			// Preview uploaded images
@@ -248,12 +234,6 @@ export default {
 
 			return compiled;
 		},
-		config() {
-			return mergeConfig(this.renderConfig);
-		},
-		options() {
-			return mergeOptions(this.renderOptions);
-		},
 		hideDetails() {
 			return !Boolean(this.hint);
 		},
@@ -263,16 +243,22 @@ export default {
 	},
 
 	watch: {
-		compiled: {
+		renderConfig: {
 			immediate: true,
 			handler() {
+				const config = _.merge(_.clone(defaultConfig), this.renderConfig);
+				renderer = createRenderer(config);
+				if (config.mermaid) {
+					mermaid.initialize(config.mermaid);
+				}
+			}
+		},
+		compiled: {
+			immediate: true,
+			async handler() {
 				// Wait until rendered
-				this.$nextTick(() => {
-					if (this.options.mermaid)
-						this.renderMermaid();
-					if (this.options.copyIcon)
-						this.renderCopyIcon();
-				});
+				await this.$nextTick();
+				this.renderMermaid();
 			}
 		}
 	},
@@ -317,67 +303,43 @@ export default {
 				throw new Error(message);
 			});
 		}
-
-		if (this.config.mermaid) {
-			mermaid.initialize(this.config.mermaid);
-		}
 	},
 
 	methods: {
-		renderCopyIcon() {
-			const els = document.querySelectorAll('.v-application .md  pre code');
-			for (let i = 0; i < els.length; ++i) {
-				// Disable copy icon if empty
-				if (cache.code[i]) {
-					const Icon = Vue.extend(ClickableIcon)
-					const instance = new Icon({
-						parent: this,
-						propsData: {
-							title: 'Copy',
-							css: {
-								position: 'absolute',
-								top: '7.5px',
-								right: '6px'
-							},
-							dark: true
-						},
-					});
-					// Copy event
-					instance.$on('click', () => {
-						this.$emit('copy', cache.code[i]);
-					});
-					instance.$slots.default = ['mdi-content-copy'];
-					instance.$slots.tooltip = ['Copied!'];
-					instance.$mount();
-					els[i].setAttribute('style', 'position: relative');
-					els[i].appendChild(instance.$el);
-				}
-			}
-		},
-
-		renderMermaid() {
+		async renderMermaid() {
 			if (mermaidTimeout) clearTimeout(mermaidTimeout);
 
 			// Try cache first
 			let els = document.getElementsByClassName("mermaid");
-			const uncached = Array(els.length);
+			const uncached = [];
 			for (let i = 0; i < els.length; ++i) {
-				const hash = md5(els[i].textContent).toString();
+				const hash = md5(els[i].textContent.trim()).toString();
+				if (cache.mermaid[hash]) {
+					els[i].innerHTML = cache.mermaid[hash];
+					// To prevent from rendering it again
+					els[i].className = 'mermaid-cached';
+
+					// This el has been **removed** from els
+					--i;
+					continue;
+				}
 				// Record the index for caching later
-				uncached[i] = hash;
+				uncached.push(hash);
 			}
 
-			mermaidTimeout = setTimeout(() => {
-				try {
-					mermaid.init();
-					// Update cache
-					els = document.getElementsByClassName("mermaid");
-					for (let i = 0; i < els.length; ++i) {
-						if (uncached[i]) cache.mermaid[uncached[i]] = els[i].innerHTML;
-					}
-				} catch (err) {}
-				mermaidTimeout = null;
-			}, 300);
+			if (uncached.length) 
+				mermaidTimeout = setTimeout(() => {
+					try {
+						mermaid.init();
+						// Update cache
+						els = document.getElementsByClassName("mermaid");
+						for (let i = 0; i < els.length; ++i) {
+							if (uncached[i])
+								cache.mermaid[uncached[i]] = els[i].innerHTML;
+						}
+					} catch (err) {}
+					mermaidTimeout = null;
+				}, 300);
 		},
 
 		// Provide a function to focus on the textarea

@@ -1,24 +1,13 @@
 export type Config = {
-	katex: {
-		delimiters: {
-			left: string;
-			right: string;
-			options: {
-				displayMode: boolean
-			}
-		}[]
-	};
-	hooks?: {
-		code?: (code: string, language: string) => void;
-	};
+	texmath?: any;
+	highlightjs?: any;
+	codeCopy?: any;
 };
 
 export type Options = {
-	katex?: boolean;
-	mermaid?: boolean;
-	inline?: boolean;
-	copyIcon?: boolean;
-};
+	texmath?: boolean;
+	codeCopy?: boolean;
+}
 
 export type Cache = {
 	mermaid?: {

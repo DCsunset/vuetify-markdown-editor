@@ -18,23 +18,9 @@
 	content: initial;
 }
 
-/* Change h1, h2... styles to make markdown format better */
-.v-application .md h1 {
-	font-size: 1.8em;
-	margin: 0.3em 0 0.6em 0;
-}
-
-.v-application .md h2 {
-	margin: 0.25em 0;
-}
-
-.v-application .md h3 {
-	margin: 0.12em 0;
-}
-
+/* Change h1, h2... styles to make markdown's style better */
 .v-application .md p {
-	margin-top: 12px;
-	margin-bottom: 12px;
+	margin-bottom: 8px;
 }
 
 .markdown-text {
