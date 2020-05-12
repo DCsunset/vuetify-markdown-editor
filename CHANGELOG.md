@@ -1,3 +1,14 @@
+# [3.0.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v2.0.2...v3.0.0) (2020-05-12)
+
+
+### Bug Fixes
+
+* fix export modules ([52ee737](https://github.com/DCsunset/vuetify-markdown-editor/commit/52ee737781ea136f5d35664c090338468ac9dc40))
+* fix types ([8134ce2](https://github.com/DCsunset/vuetify-markdown-editor/commit/8134ce2886fdf27de78389e64257d170e1614d20))
+* update types ([c2ed7fe](https://github.com/DCsunset/vuetify-markdown-editor/commit/c2ed7fe298dec3496c80371e8752c230d3b39428))
+
+
+
 ## [2.0.2](https://github.com/DCsunset/vuetify-markdown-editor/compare/v2.0.1...v2.0.2) (2020-04-27)
 
 
