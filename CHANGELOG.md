@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/DCsunset/vuetify-markdown-editor/compare/v3.0.0...v3.0.1) (2020-05-15)
+
+
+### Bug Fixes
+
+* fix webpack config for vue-cli imports ([22f96b1](https://github.com/DCsunset/vuetify-markdown-editor/commit/22f96b15a26e5e21ec059ecbf5b1b6753e9f123f))
+
+
+
 # [3.0.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v2.0.2...v3.0.0) (2020-05-12)
 
 
