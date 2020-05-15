@@ -21,7 +21,18 @@
 </template>
 
 <script>
+import {
+	VRow,
+	VChip,
+	VProgressLinear
+} from 'vuetify/lib';
+
 export default {
+	components: {
+		VRow,
+		VChip,
+		VProgressLinear
+	},
 	props: {
 		files: undefined
 	}

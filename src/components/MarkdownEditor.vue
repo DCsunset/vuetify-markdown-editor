@@ -103,6 +103,17 @@
 </style>
 
 <script>
+import {
+	VContainer,
+	VRow,
+	VCol,
+	VCard,
+	VToolbar,
+	VDivider,
+	VIcon,
+	VTextarea,
+	VHover
+} from 'vuetify/lib';
 import Flow from "@flowjs/flow.js/dist/flow.min.js";
 import emojiData from "emoji-mart-vue-fast/data/all.json";
 import { Picker, EmojiIndex } from "emoji-mart-vue-fast";
@@ -130,6 +141,15 @@ let renderer;
 
 export default {
 	components: {
+		VContainer,
+		VRow,
+		VCol,
+		VCard,
+		VToolbar,
+		VDivider,
+		VIcon,
+		VTextarea,
+		VHover,
 		Picker,
 		ImageStatus
 	},

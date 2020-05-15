@@ -14,11 +14,13 @@
 
 <script>
 import { Editor } from "./build-entry.js";
+import { VApp } from 'vuetify/lib';
 
 export default {
 	name: "app",
 	components: {
-		Editor
+		Editor,
+		VApp
 	},
 	data() {
 		return {
