@@ -23,7 +23,7 @@ For installing Vuetify, please visit <https://vuetifyjs.com/en/getting-started/q
 - Editor-only and Editor-Preview mode
 - Code highlighting
 - Emoji picking
-- Math formula (use `\\[ formula \\]` or `$$ formula $$` for formula block, and `\\( formula \\)` or `$ formula $`for inline formula)
+- Math formula (See [markdown-it-texmath](https://github.com/goessner/markdown-it-texmath))
 - Image uploading and previewing (to use uploaded image in markdown, use the filename as the link)
 - Mermaid diagram rendering (use code block with language `mermaid`)
 
