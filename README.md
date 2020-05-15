@@ -46,41 +46,50 @@ This package can be used in Node.js module:
 
 ```html
 <template>
-  <v-app>
-    <Editor
-      mode="Rendered"
-      ref="editor"
-      hint="Test"
-      nativeEmoji
-      :outline="false"
-      :preview="true"
-      v-model="text"
-      />
-  </v-app>
+	<v-app>
+		<Editor
+			mode="preview"
+			ref="editor"
+			hint="Test"
+			:outline="false"
+			:render-config="renderConfig"
+			:render-options="renderOptions"
+			v-model="text"
+		/>
+	</v-app>
 </template>
 
 <script>
-import { Editor } from 'vuetify-markdown-editor';
-import 'vuetify-markdown-editor/dist/vuetify-markdown-editor.css';
+import { Editor } from "vuetify-markdown-editor";
+import { VApp } from 'vuetify/lib';
 
 export default {
-  name: 'app',
-  components: {
-    Editor
-  },
-  data() {
-    return {
-      text: ''
-    };
-  },
-  mounted() {
-    // Access properties or methods using $refs
-    this.$refs.editor.focus();
-    // this.$refs.editor.upload();
+	name: "app",
+	components: {
+		Editor,
+		VApp
+	},
+	data() {
+		return {
+			text: "",
+			renderConfig: {
+				mermaid: {
+					theme: "dark"
+				}
+			},
+			renderOptions: {
+				copyIcon: true
+			}
+		};
+	},
+	mounted() {
+		// Access properties or methods using $refs
+		// this.$refs.editor.focus();
+		// this.$refs.editor.upload();
 
-    // Dark theme
-    //this.$vuetify.theme.dark = true;
-  }
+		// Dark theme
+		this.$vuetify.theme.dark = true;
+	}
 };
 </script>
 ```
