@@ -34,6 +34,7 @@ For installing Vuetify, please visit <https://vuetifyjs.com/en/getting-started/q
 * [x] Add typescript support
 * [x] Add copy icon
 * [x] Add viewer mode
+* [ ] Fix large image
 * [ ] Add self-hosted emoji images
 * [ ] Add emoji rendering in rendered text
 * [ ] Add more WYSIWYG functions
