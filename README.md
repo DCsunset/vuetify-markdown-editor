@@ -50,10 +50,9 @@ This package can be used in Node.js module:
     <Editor
       mode="preview"
       ref="editor"
-      hint="Test"
+      hint="Hint"
       :outline="false"
       :render-config="renderConfig"
-      :render-options="renderOptions"
       v-model="text"
     />
   </v-app>
@@ -73,12 +72,10 @@ export default {
     return {
       text: "",
       renderConfig: {
+        // Mermaid config
         mermaid: {
           theme: "dark"
         }
-      },
-      renderOptions: {
-        copyIcon: true
       }
     };
   },
