@@ -1,18 +1,9 @@
 import Vue from 'vue'
 import MarkdownIt from 'markdown-it';
+import { Config } from '../src/util/types';
 
 export declare function createRenderer(
-	text: string,
-	customOptions?: {
-		katex?: boolean,
-		mermaid?: boolean,
-		inline?: boolean
-	},
-	customConfig?: {
-		katex?: any,
-		mermaid?: any
-	},
-	renderCache?: any
+	config: Config
 ): MarkdownIt
 
 export declare class Editor extends Vue { }
