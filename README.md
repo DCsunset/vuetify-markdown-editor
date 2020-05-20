@@ -132,7 +132,9 @@ use `createRenderer` to create it.
     buttonClass: 'v-icon theme--dark'
   },
   // The native mermaid config
-  mermaid: undefined
+  mermaid: undefined,
+  // Markdown-it config
+  markdownIt: undefined
 }
 ```
 
