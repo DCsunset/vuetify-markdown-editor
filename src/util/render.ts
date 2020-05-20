@@ -5,7 +5,9 @@ import 'katex/dist/katex.min.css';
 import { Config } from './types';
 
 function createRenderer(config: Config = {}) {
-	const renderer = new MarkdownIt()
+	const renderer = new MarkdownIt({
+			...config.markdownIt
+		})
 		.use(require('markdown-it-texmath'), {
 			engine: katex,
 			...config.texmath
