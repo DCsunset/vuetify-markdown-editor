@@ -1,3 +1,15 @@
+# [3.1.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v3.0.1...v3.1.0) (2020-05-20)
+
+### Features
+
+* Add support for customization markdownit
+
+### Bug Fixes
+
+* fix types for createRenderer ([56cdd3a](https://github.com/DCsunset/vuetify-markdown-editor/commit/56cdd3a7a1aeb3f81fcbc050a15d1a48c015dd1f))
+
+
+
 ## [3.0.1](https://github.com/DCsunset/vuetify-markdown-editor/compare/v3.0.0...v3.0.1) (2020-05-15)
 
 
