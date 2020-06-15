@@ -114,6 +114,7 @@ use `createRenderer` to create it.
 | emoji         | `true`                                  | Enable emoji input                                               |
 | emojiSet      | `"apple"`                               | Supported emoji sets: `'apple', 'google', 'twitter', 'facebook'` |
 | image         | `true`                                  | Enable image upload                                              |
+| counter       | `undefined`                             | Show a counter for input length. It can be a number (means the limit), string (will be converted to number) or boolean (just a counter). No validation is performed.
 | hint          | `''`                                    | Add description at the bottom                                    |
 | fileTarget    | `'/'`                                     | Image upload target uri                                          |
 | fileFilter    | `file => file.type.startsWith('image')` | Allow only specific files. Return true to allow, false to reject |

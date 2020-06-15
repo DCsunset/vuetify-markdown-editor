@@ -64,6 +64,7 @@
 					<v-textarea
 						solo
 						flat
+						:counter="counter"
 						:hide-details="hideDetails"
 						:hint="hint"
 						auto-grow
@@ -197,6 +198,7 @@ export default {
 			type: Boolean,
 			default: true
 		},
+		counter: undefined,
 		hint: {
 			type: String,
 			default: ""
