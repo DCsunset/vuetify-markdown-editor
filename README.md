@@ -1,8 +1,8 @@
 # vuetify-markdown-editor
 
-[![npm](https://img.shields.io/npm/v/vuetify-markdown-editor.svg)](https://www.npmjs.com/package/vuetify-markdown-editor)
-[![npm](https://img.shields.io/npm/dm/vuetify-markdown-editor.svg)](https://www.npmjs.com/package/vuetify-markdown-editor)
-[![GitHub](https://img.shields.io/github/license/DCsunset/vuetify-markdown-editor.svg?color=blue)](https://github.com/DCsunset/vuetify-markdown-editor/blob/master/LICENSE)
+[![npm version](https://badgen.net/npm/v/vuetify-markdown-editor)](https://www.npmjs.com/package/vuetify-markdown-editor)
+[![npm downloads](https://badgen.net/npm/dt/vuetify-markdown-editor)](https://www.npmjs.com/package/vuetify-markdown-editor)
+[![GitHub](https://badgen.net/github/license/dcsunset/vuetify-markdown-editor)](https://github.com/DCsunset/vuetify-markdown-editor/blob/master/LICENSE)
 
 A Vue.js Component for editing and previewing markdown using Vuetify.js and markdown-it.
 
