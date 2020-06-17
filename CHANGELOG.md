@@ -1,3 +1,12 @@
+# [3.2.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v3.1.0...v3.2.0) (2020-06-17)
+
+
+### Features
+
+* add counter for input length ([0fec83d](https://github.com/DCsunset/vuetify-markdown-editor/commit/0fec83dc7d4b7d09127bfd34668c4c31d613776a))
+
+
+
 # [3.1.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v3.0.1...v3.1.0) (2020-05-20)
 
 ### Features
