@@ -1,3 +1,12 @@
+## [3.2.1](https://github.com/DCsunset/vuetify-markdown-editor/compare/v3.2.0...v3.2.1) (2020-06-22)
+
+
+### Bug Fixes
+
+* add missing files for type ([688eada](https://github.com/DCsunset/vuetify-markdown-editor/commit/688eada41a18b49dbd37649a319b1fa4da65e59e))
+
+
+
 # [3.2.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v3.1.0...v3.2.0) (2020-06-17)
 
 
