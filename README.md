@@ -19,6 +19,7 @@ For installing Vuetify, please visit <https://vuetifyjs.com/en/getting-started/q
 
 ## Features
 
+- TypeScript support
 - Solo and inline mode
 - Editor-only and Editor-Preview mode
 - Code highlighting
