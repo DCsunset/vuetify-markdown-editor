@@ -64,9 +64,7 @@
 					<v-textarea
 						solo
 						flat
-						:counter="counter"
-						:hide-details="hideDetails"
-						:hint="hint"
+						v-bind="$attrs"
 						auto-grow
 						ref="textarea"
 						:value="value"
@@ -198,11 +196,6 @@ export default {
 			type: Boolean,
 			default: true
 		},
-		counter: undefined,
-		hint: {
-			type: String,
-			default: ""
-		},
 		// target url of uploading files
 		fileTarget: {
 			type: String,
@@ -255,9 +248,6 @@ export default {
 			);
 
 			return compiled;
-		},
-		hideDetails() {
-			return !Boolean(this.hint);
 		},
 		files() {
 			return this.flow && this.flow.files;

@@ -7,6 +7,7 @@
       :outline="false"
       :render-config="renderConfig"
       v-model="text"
+      rows="5"
     />
   </v-app>
 </template>
