@@ -1,3 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [3.3.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v3.2.1...v3.3.0) (2020-10-23)
+
+
+### Features
+
+* support passing props to v-textarea ([00053dd](https://github.com/DCsunset/vuetify-markdown-editor/commit/00053dd006bd37df6d1c5d8c73c2d2e5b3730196))
+
 ## [3.2.1](https://github.com/DCsunset/vuetify-markdown-editor/compare/v3.2.0...v3.2.1) (2020-06-22)
 
 
@@ -224,6 +235,3 @@
 
 
 ## 0.4.2 (2019-07-16)
-
-
-
