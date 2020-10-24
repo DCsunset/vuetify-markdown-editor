@@ -119,7 +119,8 @@ use `createRenderer` to create it.
 | fileFilter    | `file => file.type.startsWith('image')` | Allow only specific files. Return true to allow, false to reject |
 | baseUrl | `'/'` | The baseUrl for uploaded images. **Must end with a slash** (mainly used in `viewer` mode) |
 
-**Other props** that are **not** listed in the above table will be directly passed to `v-textarea`.
+**Other props** that are **not** listed in the above table will be directly passed to `v-textarea`,
+which enables you to set the native props in `v-textarea`.
 
 ## Default Renderer Configurations
 
