@@ -26,3 +26,15 @@
 .markdown-text {
 	word-wrap: break-word;
 }
+
+.markdown-text table td,
+.markdown-text table th {
+	padding: 8px;
+	border: 1px solid;
+	border-color: rgb(118, 110, 97);
+}
+
+.markdown-text table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
