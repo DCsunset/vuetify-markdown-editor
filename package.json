@@ -25,7 +25,7 @@
     "emoji-mart-vue-fast": "^7.0.6",
     "katex": "^0.12.0",
     "lodash": "^4.17.20",
-    "markdown-it": "^12.0.1",
+    "markdown-it": "^12.0.4",
     "markdown-it-code-copy": "^0.1.0",
     "markdown-it-highlightjs": "^3.3.0",
     "markdown-it-mermaid-plugin": "^0.1.0",
