@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.2](https://github.com/DCsunset/vuetify-markdown-editor/compare/v3.3.1...v3.3.2) (2021-01-04)
+
+
+### Bug Fixes
+
+* fix background color of table ([b7505a6](https://github.com/DCsunset/vuetify-markdown-editor/commit/b7505a6397b30b95df30739592351ad54b7630d9))
+
 ## [3.3.0](https://github.com/DCsunset/vuetify-markdown-editor/compare/v3.2.1...v3.3.0) (2020-10-23)
 
 
