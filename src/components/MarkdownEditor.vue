@@ -11,6 +11,7 @@
 				<v-card :outlined="outline" ref="md-editor">
 					<!-- Toolbar's style "transform: translateY(0)" will influence the z-index, so use "z-index: 1" on toolbar-->
 					<v-toolbar
+						v-if="emoji || image"
 						:style="{ position: 'relative', 'z-index': 1 }"
 						height="48px"
 						flat
